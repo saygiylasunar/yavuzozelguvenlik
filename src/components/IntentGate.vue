@@ -93,7 +93,7 @@ const intents = [
 
           <a class="intent-identity__credit" href="https://saygiylasunar.com" target="_blank" rel="noreferrer">
             <span>Site</span>
-            <strong>Saygıyla Sunar</strong>
+            <strong>Ersen Filiz Saygıyla Sunar</strong>
             <b>↗</b>
           </a>
         </aside>
