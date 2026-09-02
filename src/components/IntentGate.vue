@@ -25,10 +25,12 @@ const intents = [
             <span class="intent-plan__zone intent-plan__zone--b"></span>
             <span class="intent-plan__zone intent-plan__zone--c"></span>
             <span class="intent-plan__route"></span>
+            <span class="intent-plan__checkpoint"></span>
             <span class="intent-plan__guard"></span>
             <span class="intent-plan__camera intent-plan__camera--a"></span>
             <span class="intent-plan__camera intent-plan__camera--b"></span>
             <span class="intent-plan__gate"></span>
+            <span class="intent-plan__access"></span>
           </div>
           <div class="intent-panel__visual-copy">
             <span>YAVUZ</span>
@@ -116,12 +118,12 @@ const intents = [
 
 .intent-panel {
   display: grid;
-  grid-template-columns: 0.58fr 1.28fr 0.72fr;
-  width: min(1180px, 100%);
-  max-height: min(780px, calc(100vh - 48px));
+  grid-template-columns: 0.48fr 1.18fr 0.64fr;
+  width: min(1040px, 100%);
+  max-height: min(744px, calc(100vh - 48px));
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 30px;
+  border-radius: 28px;
   background: #fbfaf6;
   box-shadow: 0 36px 120px rgba(0, 0, 0, 0.36);
 }
@@ -137,13 +139,13 @@ const intents = [
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(5, 25, 34, 0.8));
+  background: linear-gradient(180deg, transparent 44%, rgba(5, 25, 34, 0.82));
 }
 
 .intent-plan {
   position: absolute;
-  inset: 12% 10% 30%;
-  transform: rotate(-7deg);
+  inset: 12% 9% 31%;
+  transform: rotate(-6deg);
 }
 
 .intent-plan::before {
@@ -151,7 +153,7 @@ const intents = [
   position: absolute;
   inset: 0;
   border: 1px dashed rgba(168, 221, 210, 0.34);
-  border-radius: 22px;
+  border-radius: 20px;
 }
 
 .intent-plan__zone {
@@ -166,24 +168,51 @@ const intents = [
 
 .intent-plan__route {
   position: absolute;
-  top: 59%;
-  left: 10%;
-  width: 72%;
+  top: 60%;
+  left: 12%;
+  width: 68%;
   height: 1px;
-  border-top: 1px dashed rgba(239, 178, 87, 0.54);
+  border-top: 1px dashed rgba(239, 178, 87, 0.48);
   transform: rotate(-18deg);
+  transform-origin: left center;
+}
+
+.intent-plan__route::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #efb257;
+  opacity: 0;
+  box-shadow: 0 0 0 7px rgba(239, 178, 87, 0.06);
+  animation: intent-route-progress 12s linear infinite;
+}
+
+.intent-plan__checkpoint {
+  position: absolute;
+  top: 38%;
+  right: 22%;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #a8ddd2;
+  border-radius: 50%;
+  opacity: 0.56;
+  animation: intent-checkpoint 12s ease-in-out infinite;
 }
 
 .intent-plan__guard {
   position: absolute;
-  top: 52%;
-  left: 38%;
+  top: 56%;
+  left: 17%;
   width: 11px;
   height: 11px;
   border-radius: 50%;
   background: #efb257;
-  box-shadow: 0 0 0 14px rgba(239, 178, 87, 0.06);
-  animation: intent-guard 7s ease-in-out infinite;
+  box-shadow: 0 0 0 13px rgba(239, 178, 87, 0.06);
+  animation: intent-guard 12s ease-in-out infinite;
 }
 
 .intent-plan__camera {
@@ -199,18 +228,18 @@ const intents = [
   position: absolute;
   top: 50%;
   left: 100%;
-  width: 72px;
-  height: 54px;
-  background: linear-gradient(90deg, rgba(168, 221, 210, 0.16), transparent);
+  width: 66px;
+  height: 48px;
+  background: linear-gradient(90deg, rgba(168, 221, 210, 0.17), transparent);
   clip-path: polygon(0 44%, 100% 0, 100% 100%);
   transform: translateY(-50%);
   transform-origin: left center;
-  animation: intent-camera 6s ease-in-out infinite;
+  animation: intent-camera 12s ease-in-out infinite;
 }
 
 .intent-plan__camera--a { top: 14%; left: 13%; }
 .intent-plan__camera--b { right: 13%; bottom: 18%; transform: rotate(180deg); }
-.intent-plan__camera--b::after { animation-delay: -3s; }
+.intent-plan__camera--b::after { animation-delay: -6s; }
 
 .intent-plan__gate {
   position: absolute;
@@ -231,21 +260,33 @@ const intents = [
   height: 1px;
   background: #efb257;
   transform-origin: left center;
-  animation: intent-gate 7s ease-in-out infinite;
+  animation: intent-gate 12s ease-in-out infinite;
+}
+
+.intent-plan__access {
+  position: absolute;
+  bottom: 1px;
+  left: calc(18% + 12px);
+  width: 14px;
+  height: 14px;
+  border: 1px solid #efb257;
+  border-radius: 50%;
+  opacity: 0;
+  animation: intent-access 12s ease-out infinite;
 }
 
 .intent-panel__visual-copy {
   position: absolute;
-  right: 28px;
-  bottom: 28px;
-  left: 28px;
+  right: 24px;
+  bottom: 25px;
+  left: 24px;
   z-index: 2;
   color: #fff;
 }
 
 .intent-panel__visual-copy span {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
   color: #9bd8cd;
   font-size: 11px;
   font-weight: 700;
@@ -254,7 +295,7 @@ const intents = [
 
 .intent-panel__visual-copy strong {
   font-family: 'Source Serif 4', serif;
-  font-size: 31px;
+  font-size: 29px;
   font-weight: 500;
   line-height: 1.04;
 }
@@ -262,13 +303,13 @@ const intents = [
 .intent-panel__content {
   position: relative;
   overflow-y: auto;
-  padding: 42px;
+  padding: 36px 34px 30px;
 }
 
 .intent-close {
   position: absolute;
-  top: 20px;
-  right: 22px;
+  top: 17px;
+  right: 18px;
   display: grid;
   place-items: center;
   width: 36px;
@@ -283,7 +324,7 @@ const intents = [
 }
 
 .intent-eyebrow {
-  margin: 0 0 10px;
+  margin: 0 0 9px;
   color: #2e716f;
   font-size: 11px;
   font-weight: 700;
@@ -292,36 +333,36 @@ const intents = [
 }
 
 .intent-panel h2 {
-  max-width: 520px;
+  max-width: 480px;
   margin: 0;
   color: #0d2635;
-  font-size: clamp(32px, 4vw, 46px);
-  line-height: 1;
+  font-size: clamp(32px, 3.7vw, 42px);
+  line-height: 1.02;
   letter-spacing: -0.035em;
 }
 
 .intent-lead {
-  max-width: 590px;
-  margin: 16px 0 26px;
-  color: #6a797f;
+  max-width: 530px;
+  margin: 14px 0 21px;
+  color: #62757a;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 .intent-options {
   display: grid;
-  gap: 9px;
+  gap: 8px;
 }
 
 .intent-option {
   display: grid;
-  grid-template-columns: 42px 1fr 24px;
+  grid-template-columns: 44px 1fr 22px;
   align-items: center;
   gap: 13px;
   width: 100%;
-  padding: 13px 14px;
+  padding: 12px 13px;
   border: 1px solid rgba(13, 38, 53, 0.11);
-  border-radius: 15px;
+  border-radius: 14px;
   background: #fff;
   text-align: left;
   cursor: pointer;
@@ -332,22 +373,22 @@ const intents = [
 .intent-option.is-current {
   border-color: rgba(46, 113, 111, 0.38);
   background: #f2f8f5;
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
 .intent-option__icon {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
   background: #eaf2ee;
   color: #22615f;
 }
 
 .intent-option__icon svg {
-  width: 22px;
-  height: 22px;
+  width: 23px;
+  height: 23px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.7;
@@ -363,12 +404,13 @@ const intents = [
 
 .intent-option__copy strong {
   color: #17303d;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .intent-option__copy small {
-  color: #7a888d;
-  font-size: 11px;
+  color: #748489;
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .intent-option__arrow {
@@ -378,12 +420,12 @@ const intents = [
 
 .intent-browse {
   display: block;
-  margin: 20px auto 0;
+  margin: 16px auto 0;
   padding: 8px;
   border: 0;
   background: transparent;
-  color: #66777d;
-  font-size: 12px;
+  color: #5f7277;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -392,27 +434,27 @@ const intents = [
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 34px 28px 24px;
+  padding: 28px 23px 21px;
   border-left: 1px solid rgba(13, 38, 53, 0.1);
   background: linear-gradient(180deg, #f1eee5 0%, #e9efe9 100%);
 }
 
 .intent-identity__brand {
-  padding-bottom: 27px;
+  padding-bottom: 22px;
   border-bottom: 1px solid rgba(13, 38, 53, 0.12);
 }
 
 .intent-identity__logo-wrap {
   display: flex;
   align-items: center;
-  min-height: 90px;
-  margin-bottom: 18px;
+  min-height: 76px;
+  margin-bottom: 14px;
 }
 
 .intent-identity__logo-wrap img {
   display: block;
-  width: min(100%, 210px);
-  max-height: 86px;
+  width: min(100%, 178px);
+  max-height: 76px;
   object-fit: contain;
   object-position: left center;
 }
@@ -420,33 +462,33 @@ const intents = [
 .intent-identity__brand p {
   margin: 0;
   color: #102b38;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .intent-identity__brand > span {
   display: block;
-  margin-top: 7px;
+  margin-top: 6px;
   color: #667b7e;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
 .intent-identity__contact {
   display: grid;
   gap: 0;
-  margin-top: 26px;
+  margin-top: 20px;
 }
 
 .intent-identity__contact > p {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   color: #2e716f;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
@@ -455,7 +497,7 @@ const intents = [
   display: flex;
   flex-direction: column;
   gap: 3px;
-  padding: 13px 0;
+  padding: 10px 0;
   border-bottom: 1px solid rgba(13, 38, 53, 0.1);
 }
 
@@ -469,8 +511,8 @@ const intents = [
 .intent-identity__contact strong {
   overflow-wrap: anywhere;
   color: #17303d;
-  font-size: 12px;
-  line-height: 1.45;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .intent-identity__credit {
@@ -479,7 +521,7 @@ const intents = [
   align-items: center;
   gap: 7px;
   margin-top: auto;
-  padding-top: 24px;
+  padding-top: 18px;
   color: #617377;
   font-size: 10px;
 }
@@ -492,6 +534,7 @@ const intents = [
 .intent-identity__credit strong {
   color: #233f48;
   font-size: 11px;
+  line-height: 1.25;
 }
 
 .intent-identity__credit b {
@@ -500,18 +543,42 @@ const intents = [
 }
 
 @keyframes intent-camera {
-  0%, 100% { transform: translateY(-50%) rotate(-10deg); }
-  50% { transform: translateY(-50%) rotate(24deg); }
+  0%, 12%, 100% { transform: translateY(-50%) rotate(-12deg); opacity: 0.62; }
+  24% { transform: translateY(-50%) rotate(18deg); opacity: 1; }
+  38% { transform: translateY(-50%) rotate(4deg); opacity: 0.72; }
+  62% { transform: translateY(-50%) rotate(24deg); opacity: 0.88; }
+  80% { transform: translateY(-50%) rotate(-8deg); opacity: 0.68; }
+}
+
+@keyframes intent-route-progress {
+  0%, 22% { left: 0; opacity: 0; }
+  27% { opacity: 1; }
+  48% { left: 100%; opacity: 1; }
+  53%, 100% { left: 100%; opacity: 0; }
+}
+
+@keyframes intent-checkpoint {
+  0%, 38%, 100% { opacity: 0.42; box-shadow: 0 0 0 0 rgba(168, 221, 210, 0); }
+  45% { opacity: 1; box-shadow: 0 0 0 9px rgba(168, 221, 210, 0.08); }
+  54% { opacity: 0.58; box-shadow: 0 0 0 15px rgba(168, 221, 210, 0); }
 }
 
 @keyframes intent-guard {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(68px, -22px); }
+  0%, 22% { transform: translate(0, 0); }
+  46%, 55% { transform: translate(72px, -25px); }
+  70%, 82% { transform: translate(-3px, 56px); }
+  100% { transform: translate(0, 0); }
 }
 
 @keyframes intent-gate {
-  0%, 28%, 78%, 100% { transform: rotate(0); }
-  40%, 65% { transform: rotate(-72deg); }
+  0%, 65%, 88%, 100% { transform: rotate(0); }
+  72%, 82% { transform: rotate(-72deg); }
+}
+
+@keyframes intent-access {
+  0%, 67%, 100% { opacity: 0; transform: scale(0.6); }
+  73% { opacity: 0.9; }
+  84% { opacity: 0; transform: scale(2.1); }
 }
 
 .intent-fade-enter-active,
@@ -537,19 +604,19 @@ const intents = [
 
 @media (max-width: 1020px) {
   .intent-panel {
-    grid-template-columns: 0.55fr 1.2fr 0.62fr;
+    grid-template-columns: 0.46fr 1.14fr 0.62fr;
   }
 
   .intent-panel__content {
-    padding: 36px 30px;
+    padding: 34px 28px 28px;
   }
 
   .intent-identity {
-    padding: 30px 22px 22px;
+    padding: 26px 20px 20px;
   }
 
   .intent-identity__logo-wrap img {
-    max-width: 170px;
+    max-width: 160px;
   }
 }
 
@@ -579,7 +646,7 @@ const intents = [
 
   .intent-panel__content {
     overflow: visible;
-    padding: 34px 20px 24px;
+    padding: 32px 20px 22px;
   }
 
   .intent-panel h2 {
@@ -588,30 +655,30 @@ const intents = [
   }
 
   .intent-lead {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .intent-option {
-    grid-template-columns: 38px 1fr 18px;
+    grid-template-columns: 40px 1fr 18px;
     gap: 10px;
     padding: 11px;
   }
 
   .intent-option__icon {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
   }
 
   .intent-option__copy strong {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .intent-option__copy small {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .intent-identity {
-    padding: 24px 20px 20px;
+    padding: 22px 20px 19px;
     border-top: 1px solid rgba(13, 38, 53, 0.1);
     border-left: 0;
   }
@@ -645,7 +712,7 @@ const intents = [
   .intent-identity__contact {
     grid-template-columns: 1fr 1fr;
     column-gap: 18px;
-    margin-top: 18px;
+    margin-top: 17px;
   }
 
   .intent-identity__contact > p {
@@ -654,19 +721,22 @@ const intents = [
 
   .intent-identity__contact > a,
   .intent-identity__contact > div {
-    padding: 10px 0;
+    padding: 9px 0;
   }
 
   .intent-identity__credit {
-    margin-top: 16px;
-    padding-top: 14px;
+    margin-top: 15px;
+    padding-top: 13px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .intent-plan__route::after,
+  .intent-plan__checkpoint,
   .intent-plan__guard,
   .intent-plan__camera::after,
-  .intent-plan__gate::after {
+  .intent-plan__gate::after,
+  .intent-plan__access {
     animation: none;
   }
 }
