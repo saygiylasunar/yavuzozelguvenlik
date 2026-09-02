@@ -1,16 +1,66 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import NetworkField from './components/NetworkField.vue'
+import IntentGate from './components/IntentGate.vue'
+import SecurityMap from './components/SecurityMap.vue'
 
 const menuOpen = ref(false)
 const selectedService = ref(0)
 const headerCompact = ref(false)
+const intentOpen = ref(false)
+const userIntent = ref('')
 const examDate = new Date('2026-10-24T10:00:00+03:00')
 
 const daysUntilExam = computed(() => {
   const diff = examDate.getTime() - Date.now()
   return Math.max(0, Math.ceil(diff / 86400000))
 })
+
+const intentProfiles = {
+  browse: {
+    label: 'Sadece geziniyorum',
+    cta: 'Hızlı bilgi',
+    href: '#iletisim',
+    hero: 'Eğitimleri incele',
+    heroHref: '#egitimler',
+  },
+  basic: {
+    label: 'İlk kez ÖGG olacağım',
+    cta: 'Temel eğitim bilgisi',
+    href: '#egitimler',
+    hero: 'Temel eğitime başla',
+    heroHref: '#egitimler',
+  },
+  renewal: {
+    label: 'Kimliğimi yenileyeceğim',
+    cta: 'Yenileme süreci',
+    href: '#egitimler',
+    hero: 'Yenileme eğitimini gör',
+    heroHref: '#egitimler',
+  },
+  exam: {
+    label: 'Sınava hazırlanıyorum',
+    cta: 'Sınav merkezine geç',
+    href: '#sinav',
+    hero: 'Sınav merkezini aç',
+    heroHref: '#sinav',
+  },
+  documents: {
+    label: 'Gerekli belgeleri arıyorum',
+    cta: 'Belgeleri incele',
+    href: '#rehber',
+    hero: 'Başvuru rehberini aç',
+    heroHref: '#rehber',
+  },
+  service: {
+    label: 'Güvenlik hizmeti almak istiyorum',
+    cta: 'Hizmet teklifi',
+    href: '#iletisim',
+    hero: 'Hizmet alanlarını incele',
+    heroHref: '#hizmetler',
+  },
+}
+
+const activeIntent = computed(() => intentProfiles[userIntent.value] || null)
 
 const quickActions = [
   { index: '01', title: 'ÖGG olmak istiyorum', text: 'Temel eğitim, şartlar ve kayıt yolunu tek akışta görün.', href: '#egitimler', featured: true },
@@ -85,6 +135,7 @@ const timeline = [
 ]
 
 let observer
+let intentTimer
 
 const closeMenu = () => {
   menuOpen.value = false
@@ -94,7 +145,26 @@ const onScroll = () => {
   headerCompact.value = window.scrollY > 28
 }
 
+const selectIntent = intent => {
+  userIntent.value = intent
+  localStorage.setItem('yavuz-visitor-intent', intent)
+  intentOpen.value = false
+}
+
+const resetIntent = () => {
+  intentOpen.value = true
+}
+
 onMounted(() => {
+  const storedIntent = localStorage.getItem('yavuz-visitor-intent')
+  if (storedIntent && intentProfiles[storedIntent]) {
+    userIntent.value = storedIntent
+  } else {
+    intentTimer = window.setTimeout(() => {
+      intentOpen.value = true
+    }, 650)
+  }
+
   observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
@@ -114,19 +184,25 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   observer?.disconnect()
+  window.clearTimeout(intentTimer)
   window.removeEventListener('scroll', onScroll)
 })
 </script>
 
 <template>
   <div class="page-shell">
+    <IntentGate :open="intentOpen" :current="userIntent" @select="selectIntent" @close="intentOpen = false" />
+
     <a class="skip-link" href="#main">İçeriğe geç</a>
 
     <div class="utility-bar">
       <div class="container utility-bar__inner">
         <span>Akşehir · Konya</span>
         <span>Özel güvenlik eğitimi ve güvenlik hizmetleri</span>
-        <a href="tel:+903328136900">0 332 813 69 00</a>
+        <button v-if="activeIntent" class="intent-status" type="button" @click="resetIntent">
+          <i></i>{{ activeIntent.label }} <b>Değiştir</b>
+        </button>
+        <a v-else href="tel:+903328136900">0 332 813 69 00</a>
       </div>
     </div>
 
@@ -153,14 +229,14 @@ onBeforeUnmount(() => {
           <a href="#sinav" @click="closeMenu">Sınav merkezi</a>
           <a href="#rehber" @click="closeMenu">ÖGG rehberi</a>
           <a href="#kurumsal" @click="closeMenu">Kurumsal</a>
-          <a class="nav-cta" href="#iletisim" @click="closeMenu">Hızlı bilgi</a>
+          <a class="nav-cta" :href="activeIntent?.href || '#iletisim'" @click="closeMenu">{{ activeIntent?.cta || 'Hızlı bilgi' }}</a>
         </nav>
       </div>
     </header>
 
     <main id="main">
       <section id="top" class="hero">
-        <NetworkField />
+        <SecurityMap />
         <div class="hero-glow hero-glow--one"></div>
         <div class="hero-glow hero-glow--two"></div>
         <div class="container hero-grid">
@@ -169,8 +245,8 @@ onBeforeUnmount(() => {
             <h1>GÜVENLİĞİ ÖĞRENİN.<br><em>SAHADA UYGULAYIN.</em></h1>
             <p class="hero-lead">Özel güvenlik eğitimi, saha hizmetleri, sınav hazırlığı ve mesleki bilgi aynı kurum çatısı altında.</p>
             <div class="hero-actions">
-              <a class="button button--warm" href="#egitimler">Eğitimleri incele</a>
-              <a class="button button--glass" href="#hizmetler">Nereleri koruyoruz?</a>
+              <a class="button button--warm" :href="activeIntent?.heroHref || '#egitimler'">{{ activeIntent?.hero || 'Eğitimleri incele' }}</a>
+              <button class="button button--glass button--route" type="button" @click="resetIntent">Bana uygun yolu bul</button>
             </div>
             <div class="hero-trust">
               <div><strong>Temel + yenileme</strong><span>ÖGG eğitimleri</span></div>
@@ -251,9 +327,16 @@ onBeforeUnmount(() => {
             </div>
 
             <div class="service-detail">
-              <div class="service-orbit" aria-hidden="true">
-                <div></div><div></div><div></div>
-                <span>{{ String(selectedService + 1).padStart(2, '0') }}</span>
+              <div class="service-plan" aria-hidden="true">
+                <span class="service-plan__perimeter"></span>
+                <span class="service-plan__building service-plan__building--a"></span>
+                <span class="service-plan__building service-plan__building--b"></span>
+                <span class="service-plan__route"></span>
+                <span class="service-plan__checkpoint service-plan__checkpoint--a"></span>
+                <span class="service-plan__checkpoint service-plan__checkpoint--b"></span>
+                <span class="service-plan__guard"></span>
+                <span class="service-plan__camera"></span>
+                <span class="service-plan__gate"></span>
               </div>
               <div class="service-detail__copy" :key="selectedService">
                 <p class="eyebrow eyebrow--light">{{ services[selectedService].kicker }}</p>
