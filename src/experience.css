@@ -268,6 +268,81 @@
   50%, 100% { left: 100%; opacity: 0; }
 }
 
+/* Typography */
+body {
+  font-family: 'Manrope', system-ui, sans-serif;
+  line-height: 1.62;
+}
+
+h1,
+h2,
+h3,
+.brand strong,
+.navigation,
+.button,
+.command-link,
+.training-card > p,
+.eyebrow {
+  font-family: 'Sora', 'Manrope', sans-serif;
+}
+
+.hero h1 {
+  line-height: 1.06;
+  letter-spacing: -0.038em;
+}
+
+.hero h1 em {
+  font-family: 'Source Serif 4', serif;
+  line-height: inherit;
+}
+
+.section-heading h2,
+.guide-intro h2,
+.story-copy h2,
+.contact-grid h2 {
+  line-height: 1.12;
+  letter-spacing: -0.026em;
+}
+
+.service-detail h3,
+.training-card h3,
+.learning-stack strong,
+.guide-item strong,
+.timeline-card h3 {
+  line-height: 1.28;
+}
+
+.hero-lead {
+  line-height: 1.7;
+}
+
+.section-heading > p:last-child,
+.guide-intro > p:last-child,
+.story-copy > p:last-child,
+.contact-grid > div > p:last-child,
+.service-detail__copy > p,
+.training-card > span,
+.learning-stack p,
+.guide-item span {
+  line-height: 1.72;
+}
+
+.brand > span:last-child {
+  line-height: 1.25;
+}
+
+.button,
+.nav-cta,
+.command-link {
+  line-height: 1.35;
+}
+
+.command-card > p,
+.command-details,
+.reference-list {
+  line-height: 1.6;
+}
+
 @media (max-width: 680px) {
   .intent-status {
     max-width: 185px;
@@ -282,6 +357,17 @@
 
   .service-plan {
     width: 210px;
+  }
+
+  .hero h1 {
+    line-height: 1.1;
+  }
+
+  .section-heading h2,
+  .guide-intro h2,
+  .story-copy h2,
+  .contact-grid h2 {
+    line-height: 1.16;
   }
 }
 
