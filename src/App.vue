@@ -71,10 +71,17 @@ const learningItems = [
   ['Mevzuat rehberi', 'Güncel resmî kaynaklarla sadeleştirilmiş bilgi'],
 ]
 
+const guideItems = [
+  'Nasıl özel güvenlik görevlisi olunur?',
+  'Silahlı ve silahsız eğitim farkı nedir?',
+  'Sağlık raporu nasıl alınır?',
+  'ÖGG kimlik kartı nasıl yenilenir?',
+]
+
 const timeline = [
   ['2007', 'Akşehir’de özel güvenlik alanında faaliyet başlangıcı'],
   ['2018', 'Akşehir KOMEK Güvenlik Danışmanlığı Kursu arşiv kaydı'],
-  ['Bugün', 'Eğitim, saha hizmeti ve ÖGG bilgi merkezini tek dijital yapıda buluşturan yaklaşım'],
+  ['Bugün', 'Eğitim, saha hizmeti ve ÖGG bilgi merkezini aynı kurum çatısı altında sürdüren yapı'],
 ]
 
 let observer
@@ -287,7 +294,7 @@ onBeforeUnmount(() => {
           <div class="exam-copy" data-reveal>
             <p class="eyebrow eyebrow--light">Sınav ve öğrenme merkezi</p>
             <h2>Kurs bittikten sonra da yanınızdayız.</h2>
-            <p>Eski Yavuz sitesindeki soru ve ders notu birikimini modern bir çalışma alanına dönüştüren yapı.</p>
+            <p>Yavuz’un soru ve ders notu arşivini modern bir çalışma düzeni içinde erişilebilir tutuyoruz.</p>
             <div class="exam-actions">
               <a class="button button--warm" href="#rehber">ÖGG rehberine geç</a>
               <a class="text-link" href="https://egm.gov.tr/ozelguvenlik/2026-sinav-takvimi" target="_blank" rel="noreferrer">Resmî sınav takvimi ↗</a>
@@ -312,10 +319,10 @@ onBeforeUnmount(() => {
             <p>Şartlar, belgeler, sağlık raporu, sınav, kimlik kartı ve yenileme süreçleri güncel resmî kaynaklarla sade bir dilde sunulacak.</p>
           </div>
           <div class="guide-panel" data-reveal>
-            <a href="#">Nasıl özel güvenlik görevlisi olunur?<span>→</span></a>
-            <a href="#">Silahlı ve silahsız eğitim farkı nedir?<span>→</span></a>
-            <a href="#">Sağlık raporu nasıl alınır?<span>→</span></a>
-            <a href="#">ÖGG kimlik kartı nasıl yenilenir?<span>→</span></a>
+            <div v-for="item in guideItems" :key="item" class="guide-item">
+              <strong>{{ item }}</strong>
+              <span>Bilgi başlığı</span>
+            </div>
           </div>
         </div>
       </section>
@@ -325,7 +332,7 @@ onBeforeUnmount(() => {
           <div class="story-copy" data-reveal>
             <p class="eyebrow">Kurumsal hafıza</p>
             <h2>Bir kurs sayfasından daha fazlası.</h2>
-            <p>Yıllara yayılan eğitim, saha ve içerik birikimini yeni dijital deneyimin temel parçası haline getiriyoruz.</p>
+            <p>Yıllara yayılan eğitim, saha ve içerik birikimi kurumun bugün sunduğu hizmetlerin temelini oluşturuyor.</p>
           </div>
           <div class="timeline" data-reveal>
             <article v-for="item in timeline" :key="item[0]">
