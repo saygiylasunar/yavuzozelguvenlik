@@ -1,0 +1,254 @@
+.intent-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.intent-status i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--warm);
+  box-shadow: 0 0 0 5px rgba(239, 178, 87, 0.08);
+}
+
+.intent-status b {
+  color: #9fc5c4;
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.button--route {
+  cursor: pointer;
+}
+
+.service-plan {
+  position: relative;
+  width: min(260px, 100%);
+  aspect-ratio: 1;
+  margin: auto;
+  border-radius: 26px;
+  background:
+    linear-gradient(rgba(168, 221, 210, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 221, 210, 0.045) 1px, transparent 1px),
+    rgba(7, 31, 41, 0.46);
+  background-size: 28px 28px;
+  box-shadow: inset 0 0 0 1px rgba(168, 221, 210, 0.08);
+  overflow: hidden;
+}
+
+.service-plan__perimeter {
+  position: absolute;
+  inset: 18px 20px 22px 18px;
+  border: 1px dashed rgba(239, 178, 87, 0.36);
+  border-radius: 18px;
+}
+
+.service-plan__building {
+  position: absolute;
+  border: 1px solid rgba(168, 221, 210, 0.23);
+  background: rgba(168, 221, 210, 0.035);
+}
+
+.service-plan__building--a {
+  top: 52px;
+  left: 48px;
+  width: 78px;
+  height: 63px;
+}
+
+.service-plan__building--b {
+  right: 42px;
+  bottom: 56px;
+  width: 88px;
+  height: 72px;
+}
+
+.service-plan__route {
+  position: absolute;
+  top: 150px;
+  left: 44px;
+  width: 158px;
+  height: 62px;
+  border-top: 1px dashed rgba(168, 221, 210, 0.4);
+  border-right: 1px dashed rgba(168, 221, 210, 0.4);
+  border-radius: 0 42px 0 0;
+  transform: rotate(-18deg);
+}
+
+.service-plan__checkpoint {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border: 2px solid #efb257;
+  border-radius: 50%;
+  background: #0d2635;
+  box-shadow: 0 0 0 7px rgba(239, 178, 87, 0.05);
+}
+
+.service-plan__checkpoint--a {
+  top: 132px;
+  left: 79px;
+}
+
+.service-plan__checkpoint--b {
+  right: 55px;
+  bottom: 49px;
+  animation: service-checkpoint 5s ease-in-out infinite -2s;
+}
+
+.service-plan__guard {
+  position: absolute;
+  top: 144px;
+  left: 72px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #a8ddd2;
+  box-shadow: 0 0 0 24px rgba(168, 221, 210, 0.035);
+  animation: service-patrol 9s ease-in-out infinite;
+}
+
+.service-plan__guard::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 9px;
+  width: 42px;
+  height: 32px;
+  background: linear-gradient(90deg, rgba(168, 221, 210, 0.15), transparent);
+  clip-path: polygon(0 42%, 100% 0, 100% 100%);
+  transform-origin: left center;
+  animation: service-look 4s ease-in-out infinite;
+}
+
+.service-plan__camera {
+  position: absolute;
+  top: 37px;
+  right: 34px;
+  width: 15px;
+  height: 9px;
+  border: 1px solid #a8ddd2;
+  border-radius: 3px;
+  transform: rotate(145deg);
+}
+
+.service-plan__camera::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 76px;
+  height: 54px;
+  background: linear-gradient(90deg, rgba(239, 178, 87, 0.17), transparent);
+  clip-path: polygon(0 43%, 100% 0, 100% 100%);
+  transform: translateY(-50%);
+  transform-origin: left center;
+  animation: service-camera 7s ease-in-out infinite;
+}
+
+.service-plan__gate {
+  position: absolute;
+  bottom: 17px;
+  left: 50px;
+  width: 46px;
+  height: 20px;
+  border-right: 2px solid rgba(168, 221, 210, 0.7);
+  border-left: 2px solid rgba(168, 221, 210, 0.7);
+}
+
+.service-plan__gate::after {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: 5px;
+  width: 34px;
+  height: 1px;
+  background: #efb257;
+  transform-origin: left center;
+  animation: service-gate 8s ease-in-out infinite;
+}
+
+@keyframes service-patrol {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  42% {
+    transform: translate(82px, 21px);
+  }
+  72% {
+    transform: translate(116px, 58px);
+  }
+}
+
+@keyframes service-look {
+  0%, 100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(32deg);
+  }
+}
+
+@keyframes service-camera {
+  0%, 100% {
+    transform: translateY(-50%) rotate(-14deg);
+  }
+  50% {
+    transform: translateY(-50%) rotate(24deg);
+  }
+}
+
+@keyframes service-gate {
+  0%, 26%, 74%, 100% {
+    transform: rotate(0);
+  }
+  38%, 62% {
+    transform: rotate(-76deg);
+  }
+}
+
+@keyframes service-checkpoint {
+  0%, 70%, 100% {
+    box-shadow: 0 0 0 7px rgba(239, 178, 87, 0.05);
+  }
+  80% {
+    box-shadow: 0 0 0 15px rgba(239, 178, 87, 0.12);
+  }
+}
+
+@media (max-width: 680px) {
+  .intent-status {
+    max-width: 185px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .intent-status b {
+    display: none;
+  }
+
+  .service-plan {
+    width: 210px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-plan__checkpoint--b,
+  .service-plan__guard,
+  .service-plan__guard::after,
+  .service-plan__camera::after,
+  .service-plan__gate::after {
+    animation: none;
+  }
+}
