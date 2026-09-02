@@ -65,6 +65,38 @@ const intents = [
 
           <button class="intent-browse" type="button" @click="emit('select', 'browse')">Sadece geziniyorum</button>
         </div>
+
+        <aside class="intent-identity">
+          <div class="intent-identity__brand">
+            <div class="intent-identity__logo-wrap">
+              <img src="https://www.yavuzozelguvenlik.com.tr/img/altlogo.png" alt="Yavuz Özel Güvenlik logosu">
+            </div>
+            <p>Yavuz Özel Güvenlik</p>
+            <span>Eğitim · Hizmet · Bilgi</span>
+          </div>
+
+          <div class="intent-identity__contact">
+            <p>İletişim</p>
+            <a href="tel:+903328136900">
+              <span>Telefon</span>
+              <strong>0 332 813 69 00</strong>
+            </a>
+            <a href="mailto:iletisim@yavuzozelguvenlik.com.tr">
+              <span>E-posta</span>
+              <strong>iletisim@yavuzozelguvenlik.com.tr</strong>
+            </a>
+            <div>
+              <span>Konum</span>
+              <strong>Akşehir · Konya</strong>
+            </div>
+          </div>
+
+          <a class="intent-identity__credit" href="https://saygiylasunar.com" target="_blank" rel="noreferrer">
+            <span>Site</span>
+            <strong>Saygıyla Sunar</strong>
+            <b>↗</b>
+          </a>
+        </aside>
       </section>
     </div>
   </Transition>
@@ -84,9 +116,9 @@ const intents = [
 
 .intent-panel {
   display: grid;
-  grid-template-columns: 0.72fr 1.28fr;
-  width: min(980px, 100%);
-  max-height: min(760px, calc(100vh - 48px));
+  grid-template-columns: 0.58fr 1.28fr 0.72fr;
+  width: min(1180px, 100%);
+  max-height: min(780px, calc(100vh - 48px));
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 30px;
@@ -222,7 +254,7 @@ const intents = [
 
 .intent-panel__visual-copy strong {
   font-family: 'Source Serif 4', serif;
-  font-size: 34px;
+  font-size: 31px;
   font-weight: 500;
   line-height: 1.04;
 }
@@ -237,8 +269,11 @@ const intents = [
   position: absolute;
   top: 20px;
   right: 22px;
+  display: grid;
+  place-items: center;
   width: 36px;
   height: 36px;
+  padding: 0;
   border: 0;
   border-radius: 50%;
   background: #eee9df;
@@ -353,6 +388,117 @@ const intents = [
   cursor: pointer;
 }
 
+.intent-identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 34px 28px 24px;
+  border-left: 1px solid rgba(13, 38, 53, 0.1);
+  background: linear-gradient(180deg, #f1eee5 0%, #e9efe9 100%);
+}
+
+.intent-identity__brand {
+  padding-bottom: 27px;
+  border-bottom: 1px solid rgba(13, 38, 53, 0.12);
+}
+
+.intent-identity__logo-wrap {
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+  margin-bottom: 18px;
+}
+
+.intent-identity__logo-wrap img {
+  display: block;
+  width: min(100%, 210px);
+  max-height: 86px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.intent-identity__brand p {
+  margin: 0;
+  color: #102b38;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.intent-identity__brand > span {
+  display: block;
+  margin-top: 7px;
+  color: #667b7e;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.intent-identity__contact {
+  display: grid;
+  gap: 0;
+  margin-top: 26px;
+}
+
+.intent-identity__contact > p {
+  margin: 0 0 8px;
+  color: #2e716f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.intent-identity__contact > a,
+.intent-identity__contact > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(13, 38, 53, 0.1);
+}
+
+.intent-identity__contact span {
+  color: #768487;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.intent-identity__contact strong {
+  overflow-wrap: anywhere;
+  color: #17303d;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.intent-identity__credit {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  padding-top: 24px;
+  color: #617377;
+  font-size: 10px;
+}
+
+.intent-identity__credit span {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.intent-identity__credit strong {
+  color: #233f48;
+  font-size: 11px;
+}
+
+.intent-identity__credit b {
+  color: #2e716f;
+  font-size: 13px;
+}
+
 @keyframes intent-camera {
   0%, 100% { transform: translateY(-50%) rotate(-10deg); }
   50% { transform: translateY(-50%) rotate(24deg); }
@@ -389,38 +535,131 @@ const intents = [
   transform: translateY(18px) scale(0.985);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1020px) {
+  .intent-panel {
+    grid-template-columns: 0.55fr 1.2fr 0.62fr;
+  }
+
+  .intent-panel__content {
+    padding: 36px 30px;
+  }
+
+  .intent-identity {
+    padding: 30px 22px 22px;
+  }
+
+  .intent-identity__logo-wrap img {
+    max-width: 170px;
+  }
+}
+
+@media (max-width: 820px) {
+  .intent-panel {
+    grid-template-columns: minmax(0, 1fr) 250px;
+  }
+
+  .intent-panel__visual {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
   .intent-overlay {
     align-items: end;
     padding: 0;
   }
 
   .intent-panel {
-    grid-template-columns: 1fr;
+    display: block;
     width: 100%;
-    max-height: 92vh;
+    max-height: 94vh;
+    overflow-y: auto;
     border-radius: 26px 26px 0 0;
   }
 
-  .intent-panel__visual {
-    min-height: 150px;
-  }
-
-  .intent-plan {
-    inset: 10% 7% 10% 40%;
-  }
-
-  .intent-panel__visual-copy {
-    right: 48%;
-    bottom: 23px;
-  }
-
-  .intent-panel__visual-copy strong {
-    font-size: 25px;
-  }
-
   .intent-panel__content {
-    padding: 30px 20px 24px;
+    overflow: visible;
+    padding: 34px 20px 24px;
+  }
+
+  .intent-panel h2 {
+    max-width: calc(100% - 32px);
+    font-size: 34px;
+  }
+
+  .intent-lead {
+    font-size: 13px;
+  }
+
+  .intent-option {
+    grid-template-columns: 38px 1fr 18px;
+    gap: 10px;
+    padding: 11px;
+  }
+
+  .intent-option__icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .intent-option__copy strong {
+    font-size: 13px;
+  }
+
+  .intent-option__copy small {
+    font-size: 10px;
+  }
+
+  .intent-identity {
+    padding: 24px 20px 20px;
+    border-top: 1px solid rgba(13, 38, 53, 0.1);
+    border-left: 0;
+  }
+
+  .intent-identity__brand {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    column-gap: 14px;
+    align-items: center;
+  }
+
+  .intent-identity__logo-wrap {
+    grid-row: span 2;
+    min-height: 62px;
+    margin: 0;
+  }
+
+  .intent-identity__logo-wrap img {
+    width: 80px;
+    max-height: 58px;
+  }
+
+  .intent-identity__brand p {
+    font-size: 17px;
+  }
+
+  .intent-identity__brand > span {
+    margin-top: 2px;
+  }
+
+  .intent-identity__contact {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 18px;
+    margin-top: 18px;
+  }
+
+  .intent-identity__contact > p {
+    grid-column: 1 / -1;
+  }
+
+  .intent-identity__contact > a,
+  .intent-identity__contact > div {
+    padding: 10px 0;
+  }
+
+  .intent-identity__credit {
+    margin-top: 16px;
+    padding-top: 14px;
   }
 }
 
