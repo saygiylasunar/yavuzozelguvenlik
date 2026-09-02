@@ -4,11 +4,13 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 const canvas = ref(null)
 let frame = 0
 let resizeObserver
+let host
+let onPointerMove
 
 onMounted(() => {
   const el = canvas.value
   const ctx = el.getContext('2d')
-  const host = el.parentElement
+  host = el.parentElement
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const pointer = { x: 0.5, y: 0.5 }
   let points = []
@@ -86,7 +88,7 @@ onMounted(() => {
     frame = requestAnimationFrame(draw)
   }
 
-  const onPointerMove = event => {
+  onPointerMove = event => {
     const rect = host.getBoundingClientRect()
     pointer.x = (event.clientX - rect.left) / rect.width
     pointer.y = (event.clientY - rect.top) / rect.height
@@ -97,12 +99,12 @@ onMounted(() => {
   host.addEventListener('pointermove', onPointerMove, { passive: true })
   resize()
   frame = requestAnimationFrame(draw)
+})
 
-  onBeforeUnmount(() => {
-    cancelAnimationFrame(frame)
-    resizeObserver?.disconnect()
-    host.removeEventListener('pointermove', onPointerMove)
-  })
+onBeforeUnmount(() => {
+  cancelAnimationFrame(frame)
+  resizeObserver?.disconnect()
+  if (host && onPointerMove) host.removeEventListener('pointermove', onPointerMove)
 })
 </script>
 
