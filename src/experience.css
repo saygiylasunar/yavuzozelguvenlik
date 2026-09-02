@@ -226,6 +226,101 @@
   }
 }
 
+.intent-overlay .intent-panel {
+  grid-template-columns: 0.5fr 1.28fr 0.66fr;
+  width: min(1040px, 100%);
+  max-height: min(760px, calc(100vh - 48px));
+}
+
+.intent-panel .intent-panel__content {
+  padding: 34px 32px;
+}
+
+.intent-panel h2 {
+  font-size: clamp(35px, 3.5vw, 44px);
+}
+
+.intent-panel .intent-lead {
+  margin: 14px 0 22px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.intent-panel .intent-options {
+  gap: 8px;
+}
+
+.intent-panel .intent-option {
+  grid-template-columns: 44px 1fr 22px;
+  gap: 12px;
+  padding: 13px 14px;
+}
+
+.intent-panel .intent-option__icon {
+  width: 44px;
+  height: 44px;
+}
+
+.intent-panel .intent-option__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.intent-panel .intent-option__copy strong {
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.intent-panel .intent-option__copy small {
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.intent-panel .intent-browse {
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+.intent-panel .intent-identity {
+  padding: 28px 22px 22px;
+}
+
+.intent-panel .intent-identity__brand {
+  padding-bottom: 22px;
+}
+
+.intent-panel .intent-identity__logo-wrap {
+  min-height: 76px;
+  margin-bottom: 14px;
+}
+
+.intent-panel .intent-identity__logo-wrap img {
+  max-height: 74px;
+}
+
+.intent-panel .intent-identity__brand p {
+  font-size: 19px;
+  line-height: 1.15;
+}
+
+.intent-panel .intent-identity__contact {
+  margin-top: 20px;
+}
+
+.intent-panel .intent-identity__contact > a,
+.intent-panel .intent-identity__contact > div {
+  padding: 11px 0;
+}
+
+.intent-panel .intent-identity__contact strong {
+  font-size: 13px;
+}
+
+.intent-panel .intent-identity__credit strong {
+  font-size: 12px;
+  line-height: 1.3;
+}
+
 @media (max-width: 680px) {
   .intent-status {
     max-width: 185px;
@@ -240,6 +335,23 @@
 
   .service-plan {
     width: 210px;
+  }
+
+  .intent-overlay .intent-panel {
+    width: 100%;
+    max-height: 94vh;
+  }
+
+  .intent-panel .intent-panel__content {
+    padding: 32px 20px 22px;
+  }
+
+  .intent-panel .intent-option__copy strong {
+    font-size: 14px;
+  }
+
+  .intent-panel .intent-option__copy small {
+    font-size: 11px;
   }
 }
 
