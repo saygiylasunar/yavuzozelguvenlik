@@ -293,7 +293,7 @@ onBeforeUnmount(() => {
     <header class="site-header" :class="{ 'is-compact': headerCompact }">
       <div class="container header-inner">
         <a class="brand" href="#top" @click="closeMenu">
-          <span class="brand-symbol">Y</span>
+          <span class="brand-symbol brand-symbol--logo"><img src="/brand/yavuz-logo.webp" alt="" width="128" height="128"></span>
           <span>
             <strong>Yavuz Özel Güvenlik</strong>
             <small>Eğitim · Hizmet · Bilgi</small>
@@ -339,9 +339,9 @@ onBeforeUnmount(() => {
               <a class="button button--glass button--quick" href="#hizli-islemler">Hızlı işlemler</a>
             </div>
             <div class="hero-trust">
-              <div><strong>Temel + yenileme</strong><span>ÖGG eğitimleri</span></div>
-              <div><strong>Saha deneyimi</strong><span>Gerçek hizmet geçmişi</span></div>
-              <div><strong>Bilgi merkezi</strong><span>Soru · not · mevzuat</span></div>
+              <div><strong>Temel + Yenileme</strong><span>ÖGG Eğitimleri</span></div>
+              <div><strong>Saha Deneyimi</strong><span>Gerçek Hizmet Geçmişi</span></div>
+              <div><strong>Bilgi Merkezi</strong><span>Soru · Not · Mevzuat</span></div>
             </div>
           </div>
 
@@ -564,7 +564,7 @@ onBeforeUnmount(() => {
     <footer class="footer">
       <div class="container footer-grid">
         <div class="brand brand--footer">
-          <span class="brand-symbol">Y</span>
+          <span class="brand-symbol brand-symbol--logo"><img src="/brand/yavuz-logo.webp" alt="" width="128" height="128"></span>
           <span><strong>Yavuz Özel Güvenlik</strong><small>Akşehir · Konya</small></span>
         </div>
         <p>Özel güvenlik eğitimi · Güvenlik hizmetleri · ÖGG bilgi merkezi</p>
