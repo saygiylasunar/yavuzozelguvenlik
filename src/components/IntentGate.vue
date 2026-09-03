@@ -98,6 +98,19 @@ const intents = [
             </div>
           </div>
 
+          <div class="intent-map">
+            <iframe
+              title="Yavuz Özel Güvenlik Google Maps konumu"
+              src="https://www.google.com/maps?q=Yeni+Mahalle+Cumhuriyet+Caddesi+K%C3%BCr%C5%9Fat+6+Sitesi+A+Blok+49%2FB+Ak%C5%9Fehir+Konya&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=Yeni+Mahalle+Cumhuriyet+Caddesi+K%C3%BCr%C5%9Fat+6+Sitesi+A+Blok+49%2FB+Ak%C5%9Fehir+Konya" target="_blank" rel="noreferrer">
+              <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
+              Google Maps’te Aç
+            </a>
+          </div>
+
           <a class="intent-identity__credit" href="https://saygiylasunar.com" target="_blank" rel="noreferrer">
             <span>Site</span>
             <strong>Ersen Filiz Saygıyla Sunar</strong>
@@ -525,6 +538,44 @@ const intents = [
   color: #216c55;
 }
 
+.intent-map {
+  position: relative;
+  margin-top: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(13, 38, 53, 0.12);
+  border-radius: 13px;
+  background: #dfe8e3;
+}
+
+.intent-map iframe {
+  display: block;
+  width: 100%;
+  height: 104px;
+  border: 0;
+  filter: saturate(0.78) contrast(0.96);
+}
+
+.intent-map > a {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 9px;
+  background: rgba(8, 27, 39, 0.88);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+}
+
+.intent-map > a .material-symbols-rounded {
+  font-size: 14px;
+}
+
 .intent-identity__credit {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -733,6 +784,10 @@ const intents = [
   .intent-identity__contact > a,
   .intent-identity__contact > div {
     padding: 9px 0;
+  }
+
+  .intent-map iframe {
+    height: 132px;
   }
 
   .intent-identity__credit {
