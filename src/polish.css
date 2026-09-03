@@ -40,15 +40,15 @@
 .brand strong {
   color: #0d2635;
   font-size: 16px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  letter-spacing: -0.012em;
 }
 
 .brand small {
   color: #47636b;
   font-size: 11.5px;
-  font-weight: 650;
-  letter-spacing: 0.095em;
+  font-weight: 600;
+  letter-spacing: 0.09em;
 }
 
 .navigation {
@@ -119,7 +119,7 @@
 
 .hero-lead {
   color: #f1f8f7;
-  font-weight: 550;
+  font-weight: 500;
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.58), 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
@@ -182,10 +182,10 @@
   flex: none;
   padding-right: 34px;
   color: #d5e9e6;
-  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.11em;
+  font-weight: 650;
+  letter-spacing: 0.1em;
   white-space: pre;
 }
 
@@ -206,7 +206,7 @@ button,
 input,
 textarea,
 select {
-  font-family: 'Manrope', system-ui, sans-serif;
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 
 h1,
@@ -221,19 +221,20 @@ h4,
 .eyebrow,
 .training-card > p,
 .service-tabs button {
-  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+  font-family: 'Manrope', 'DM Sans', sans-serif;
 }
 
 .hero h1 {
   line-height: 1.18;
-  letter-spacing: -0.022em;
+  letter-spacing: -0.018em;
+  font-weight: 800;
   text-wrap: balance;
 }
 
 .hero h1 em {
   font-family: 'Source Serif 4', serif;
   line-height: 1.14;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.006em;
 }
 
 .section-heading h2,
@@ -242,7 +243,8 @@ h4,
 .contact-grid h2,
 .intent-panel h2 {
   line-height: 1.22;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.014em;
+  font-weight: 750;
   text-wrap: balance;
 }
 
@@ -253,7 +255,7 @@ h4,
 .guide-item strong,
 .bento-card strong {
   line-height: 1.36;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.008em;
 }
 
 .hero-lead {
@@ -289,6 +291,63 @@ h4,
   line-height: 1.68;
 }
 
+/* Material Symbols Rounded: one calm icon language */
+.intent-option__icon svg {
+  display: none !important;
+}
+
+.intent-option__icon::before,
+.bento-card::before {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 520, 'GRAD' 25, 'opsz' 24;
+}
+
+.intent-option__icon::before {
+  font-size: 25px;
+}
+
+.intent-options .intent-option:nth-child(1) .intent-option__icon::before { content: 'verified_user'; }
+.intent-options .intent-option:nth-child(2) .intent-option__icon::before { content: 'autorenew'; }
+.intent-options .intent-option:nth-child(3) .intent-option__icon::before { content: 'quiz'; }
+.intent-options .intent-option:nth-child(4) .intent-option__icon::before { content: 'description'; }
+.intent-options .intent-option:nth-child(5) .intent-option__icon::before { content: 'domain'; }
+
+.bento-card::before {
+  position: absolute;
+  top: 21px;
+  left: 58px;
+  color: #46716f;
+  font-size: 21px;
+  opacity: 0.78;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.bento-card:nth-child(1)::before { content: 'badge'; }
+.bento-card:nth-child(2)::before { content: 'quiz'; }
+.bento-card:nth-child(3)::before { content: 'autorenew'; }
+.bento-card:nth-child(4)::before { content: 'folder_open'; }
+
+.bento-card--featured::before {
+  color: var(--warm);
+  opacity: 0.9;
+}
+
+.bento-card:hover::before {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
 @media (max-width: 760px) {
   .utility-bar {
     font-size: 12.5px;
@@ -314,7 +373,7 @@ h4,
   .service-ticker__track::before,
   .service-ticker__track::after {
     font-size: 11px;
-    letter-spacing: 0.09em;
+    letter-spacing: 0.085em;
   }
 
   .hero .security-map__svg {
@@ -325,7 +384,7 @@ h4,
 
   .hero h1 {
     line-height: 1.2;
-    letter-spacing: -0.018em;
+    letter-spacing: -0.014em;
   }
 
   .section-heading h2,
