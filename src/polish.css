@@ -41,14 +41,14 @@
   color: #0d2635;
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
 }
 
 .brand small {
   color: #47636b;
   font-size: 11.5px;
   font-weight: 650;
-  letter-spacing: 0.105em;
+  letter-spacing: 0.095em;
 }
 
 .navigation {
@@ -137,10 +137,10 @@
   flex: none;
   padding-right: 34px;
   color: #d5e9e6;
-  font-family: 'Sora', 'Manrope', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.11em;
   white-space: pre;
 }
 
@@ -152,6 +152,96 @@
   to {
     transform: translate3d(-50%, 0, 0);
   }
+}
+
+/* Typography system */
+html,
+body,
+button,
+input,
+textarea,
+select {
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+.brand strong,
+.navigation,
+.button,
+.nav-cta,
+.command-link,
+.eyebrow,
+.training-card > p,
+.service-tabs button {
+  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+}
+
+.hero h1 {
+  line-height: 1.18;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+.hero h1 em {
+  font-family: 'Source Serif 4', serif;
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+}
+
+.section-heading h2,
+.guide-intro h2,
+.story-copy h2,
+.contact-grid h2,
+.intent-panel h2 {
+  line-height: 1.22;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+
+.service-detail h3,
+.training-card h3,
+.timeline-card h3,
+.learning-stack strong,
+.guide-item strong,
+.bento-card strong {
+  line-height: 1.36;
+  letter-spacing: -0.012em;
+}
+
+.hero-lead {
+  line-height: 1.74;
+}
+
+.section-heading > p:last-child,
+.guide-intro > p:last-child,
+.story-copy > p:last-child,
+.contact-grid > div > p:last-child,
+.service-detail__copy > p,
+.training-card > span,
+.learning-stack p,
+.guide-item span,
+.bento-card p,
+.command-card > p {
+  line-height: 1.76;
+}
+
+.brand > span:last-child {
+  line-height: 1.34;
+}
+
+.button,
+.nav-cta,
+.command-link,
+.navigation {
+  line-height: 1.45;
+}
+
+.command-details,
+.reference-list {
+  line-height: 1.68;
 }
 
 @media (max-width: 760px) {
@@ -179,7 +269,20 @@
   .service-ticker__track::before,
   .service-ticker__track::after {
     font-size: 11px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.09em;
+  }
+
+  .hero h1 {
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+  }
+
+  .section-heading h2,
+  .guide-intro h2,
+  .story-copy h2,
+  .contact-grid h2,
+  .intent-panel h2 {
+    line-height: 1.24;
   }
 }
 
