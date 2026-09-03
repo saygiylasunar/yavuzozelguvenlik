@@ -75,7 +75,7 @@ onBeforeUnmount(() => themeMedia?.removeEventListener?.('change', onSystemThemeC
     <header class="site-header inner-header">
       <div class="container header-inner">
         <a class="brand" href="/">
-          <span class="brand-symbol">Y</span>
+          <span class="brand-symbol brand-symbol--logo"><img src="/brand/yavuz-logo.webp" alt="" width="128" height="128"></span>
           <span><strong>Yavuz Özel Güvenlik</strong><small>Eğitim · Hizmet · Bilgi</small></span>
         </a>
 
@@ -215,7 +215,7 @@ onBeforeUnmount(() => themeMedia?.removeEventListener?.('change', onSystemThemeC
 
     <footer class="footer">
       <div class="container footer-grid">
-        <div class="brand brand--footer"><span class="brand-symbol">Y</span><span><strong>Yavuz Özel Güvenlik</strong><small>Akşehir · Konya</small></span></div>
+        <div class="brand brand--footer"><span class="brand-symbol brand-symbol--logo"><img src="/brand/yavuz-logo.webp" alt="" width="128" height="128"></span><span><strong>Yavuz Özel Güvenlik</strong><small>Akşehir · Konya</small></span></div>
         <p>Özel güvenlik eğitimi · Güvenlik hizmetleri · ÖGG bilgi merkezi</p>
         <a class="footer-credit" href="https://saygiylasunar.com" target="_blank" rel="noreferrer"><span>Site</span><strong>Ersen Filiz · Saygıyla Sunar</strong><b>↗</b></a>
       </div>
