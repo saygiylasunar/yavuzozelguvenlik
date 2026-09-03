@@ -3,9 +3,10 @@ import { normalizePath, sitePages } from './pages.js'
 export const SITE_URL = 'https://yavuzozelguvenlik.com.tr'
 export const SITE_NAME = 'Yavuz Özel Güvenlik'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og/yavuz-guvenlik.svg`
+export const DEFAULT_OG_ALT = 'Yavuz Özel Güvenlik · Akşehir / Konya'
 
 const homeSeo = {
-  title: 'Yavuz Özel Güvenlik | Akşehir ÖGG Eğitimi ve Güvenlik Hizmetleri',
+  title: 'Yavuz Özel Güvenlik Akşehir | ÖGG Eğitimi ve Hizmetleri',
   description: 'Akşehir’de 2006’dan beri özel güvenlik eğitimi, ÖGG sınav hazırlığı, rehber içerikleri ve işletmelere özel güvenlik hizmetleri.',
 }
 
@@ -46,6 +47,7 @@ export const getSeo = value => {
     description,
     canonical,
     image: page?.seoImage || DEFAULT_OG_IMAGE,
+    imageAlt: page?.seoImageAlt || DEFAULT_OG_ALT,
     robots: exists ? 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' : 'noindex,follow',
   }
 }
@@ -82,7 +84,7 @@ export const getStructuredData = value => {
     inLanguage: 'tr-TR',
     isPartOf: { '@id': `${SITE_URL}/#website` },
     about: { '@id': `${SITE_URL}/#organization` },
-    primaryImageOfPage: { '@type': 'ImageObject', url: seo.image },
+    primaryImageOfPage: { '@type': 'ImageObject', url: seo.image, caption: seo.imageAlt },
   }
 
   const breadcrumb = {
@@ -134,12 +136,17 @@ export const applyRuntimeSeo = value => {
   ensureMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' })
   ensureMeta('meta[property="og:url"]', { property: 'og:url', content: seo.canonical })
   ensureMeta('meta[property="og:image"]', { property: 'og:image', content: seo.image })
+  ensureMeta('meta[property="og:image:type"]', { property: 'og:image:type', content: 'image/svg+xml' })
+  ensureMeta('meta[property="og:image:width"]', { property: 'og:image:width', content: '1200' })
+  ensureMeta('meta[property="og:image:height"]', { property: 'og:image:height', content: '630' })
+  ensureMeta('meta[property="og:image:alt"]', { property: 'og:image:alt', content: seo.imageAlt })
   ensureMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: SITE_NAME })
   ensureMeta('meta[property="og:locale"]', { property: 'og:locale', content: 'tr_TR' })
   ensureMeta('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary_large_image' })
   ensureMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: seo.title })
   ensureMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: seo.description })
   ensureMeta('meta[name="twitter:image"]', { name: 'twitter:image', content: seo.image })
+  ensureMeta('meta[name="twitter:image:alt"]', { name: 'twitter:image:alt', content: seo.imageAlt })
 
   let canonical = document.head.querySelector('link[rel="canonical"]')
   if (!canonical) {
