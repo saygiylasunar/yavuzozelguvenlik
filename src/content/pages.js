@@ -169,45 +169,142 @@ export const sitePages = {
   },
 
   '/ogg-rehberi/nasil-ogg-olunur': {
-    eyebrow: 'Başlangıç rehberi',
+    eyebrow: 'Başlangıç Rehberi',
     title: 'Nasıl özel güvenlik görevlisi olunur?',
-    lead: 'Başvuru şartlarından eğitime, sınavdan kimlik kartına kadar sürecin sade özeti.',
+    lead: 'Uygunluk şartlarından sağlık raporuna, temel eğitimden sınav ve kimlik kartı başvurusuna kadar sürecin sade özeti.',
+    facts: ['T.C. Vatandaşlığı', 'Silahsız: 18 Yaş + Ortaokul', 'Silahlı: 21 Yaş + Lise', 'Olumlu Güvenlik Soruşturması'],
     steps: [
-      ['1', 'Uygunluğu kontrol edin', 'Vatandaşlık, öğrenim, adli durum ve diğer genel şartları kontrol edin.'],
-      ['2', 'Sağlık raporunu alın', 'Temel eğitim öncesinde hedeflediğiniz görev türüne uygun sağlık raporu sürecini tamamlayın.'],
-      ['3', 'Temel eğitime katılın', 'Silahlı veya silahsız programı hedeflediğiniz görev türüne göre seçin.'],
-      ['4', 'ÖGG sınavına girin', 'Eğitim kurumunun yönlendirdiği sınav dönemini ve giriş belgesini takip edin.'],
-      ['5', 'Kimlik kartına başvurun', 'Başarılı sınav sonrası güncel belge listesiyle e-Devlet veya ilgili birim üzerinden müracaat edin.']
+      ['1', 'Uygunluğu Kontrol Edin', 'Vatandaşlık, yaş, öğrenim, adli durum ve diğer temel şartları kontrol edin.'],
+      ['2', 'Sağlık Raporunu Alın', 'Temel eğitim öncesinde hedeflediğiniz görev türüne uygun aday sağlık raporunu tamamlayın.'],
+      ['3', 'Temel Eğitime Katılın', 'Silahlı veya silahsız programı hedeflediğiniz görev türüne göre seçin.'],
+      ['4', 'ÖGG Sınavına Girin', 'Eğitim kurumunun yönlendirdiği sınav dönemini ve giriş belgesini takip edin.'],
+      ['5', 'Kimlik Kartına Başvurun', 'Başarılı sınav sonrası güncel belge listesiyle e-Devlet veya ilgili birim üzerinden müracaat edin.']
     ],
-    sections: [{ title: 'Genel şartlar', paragraphs: ['5188 sayılı Kanun; vatandaşlık, öğrenim, yaş, adli durum, sağlık, temel eğitim ve güvenlik soruşturmasına ilişkin şartlar öngörür. Kesin uygunluk değerlendirmesinde güncel resmî metin esas alınmalıdır.'] }],
+    accordions: [
+      {
+        title: 'T.C. Vatandaşlığı',
+        text: 'Özel güvenlik görevlisi olabilmek için Türkiye Cumhuriyeti vatandaşı olmak gerekir.'
+      },
+      {
+        title: 'Yaş Şartı',
+        text: 'Silahsız özel güvenlik görevliliğinde 18 yaşını doldurmuş olmak gerekir. EGM’nin meslek standardında silahlı özel güvenlik görevliliği için 21 yaş şartı belirtilir.'
+      },
+      {
+        title: 'Öğrenim Şartı',
+        text: 'Silahsız görev için en az sekiz yıllık ilköğretim veya ortaokul; silahlı görev için en az lise veya dengi okul mezuniyeti gerekir.'
+      },
+      {
+        title: 'Adli Durum ve Kovuşturma Şartları',
+        text: '“Adli sicilin temiz olması” tek başına yeterli bir özet değildir. 5188 sayılı Kanun; kasten işlenen suçlardan bir yıl veya daha fazla hapis cezası ile belirli katalog suçlar bakımından mahkûmiyet, HAGB ve bazı devam eden soruşturma veya kovuşturmalar için özel sınırlamalar getirir. Kesin değerlendirmede güncel resmî metin esas alınmalıdır.'
+      },
+      {
+        title: 'Sağlık Uygunluğu',
+        text: 'Görevin yapılmasına engel olabilecek sağlık durumunun bulunmaması ve temel eğitim öncesinde hedeflenen silahlı veya silahsız statüye uygun aday sağlık raporunun alınması gerekir.'
+      },
+      {
+        title: 'Temel Eğitim ve Sınav',
+        text: 'Muafiyet kapsamına girmeyen adayların özel güvenlik temel eğitimini tamamlaması ve ilgili sınav sürecinde başarılı olması gerekir.'
+      },
+      {
+        title: 'Güvenlik Soruşturması',
+        text: 'Özel güvenlik görevlisi kimlik kartı sürecinde güvenlik soruşturmasının olumlu sonuçlanması gerekir.'
+      }
+    ],
+    sections: [
+      {
+        title: 'Sağlık Kurulu İçin Nereye Başvurulur?',
+        paragraphs: [
+          'Özel güvenlik aday sağlık raporu, Özel Güvenlik Görevlileri Sağlık Şartları Yönetmeliğinde tanımlanan tam teşekküllü hastanelerin sağlık kurullarınca düzenlenir.',
+          'Başvururken hastanenin Sağlık Kurulu / Heyet birimine “Özel Güvenlik Görevlisi Aday Sağlık Raporu” talebiyle başvurun. Randevu, ücret ve istenen ek belgeler hastaneye göre değişebildiği için gitmeden önce ilgili hastaneden teyit alın.'
+        ]
+      },
+      {
+        title: 'Tam Teşekküllü Hastane Ne Demek?',
+        paragraphs: [
+          'Yönetmelik; gerekli uzmanlık branşlarını bünyesinde bulunduran ve bu uzmanların katılımıyla sağlık kurulu oluşturabilen sağlık kurumlarını tam teşekküllü hastane olarak tanımlar. Aday raporu e-Rapor sistemi üzerinden düzenlenir.'
+        ]
+      }
+    ],
+    cta: {
+      eyebrow: 'Eğitime Başlayın',
+      title: 'Temel Eğitime Katılın',
+      text: 'Silahlı veya silahsız eğitim yolunu seçin; kayıt ve uygunluk konusunda Yavuz Özel Güvenlik ile doğrudan iletişime geçebilirsiniz.',
+      primary: { label: 'Temel Eğitime Katılın', url: '/egitimler' },
+      secondary: { label: 'WhatsApp’tan Bilgi Al', url: 'https://wa.me/905454253180?text=Merhaba%2C%20temel%20%C3%B6zel%20g%C3%BCvenlik%20e%C4%9Fitimi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.' }
+    },
     source: official('EGM ÖGG’de Aranacak Şartlar', 'ozel-guvenlik-gorevlilerinde-aranacak-sartlar'),
-    related: related(['Silahlı eğitim', '/egitimler/silahli-temel-egitim'], ['Silahsız eğitim', '/egitimler/silahsiz-temel-egitim'], ['Sağlık raporu', '/ogg-rehberi/saglik-raporu'])
+    related: related(['Silahlı Eğitim', '/egitimler/silahli-temel-egitim'], ['Silahsız Eğitim', '/egitimler/silahsiz-temel-egitim'], ['Sağlık Raporu', '/ogg-rehberi/saglik-raporu'], ['Gerekli Belgeler', '/ogg-rehberi/gerekli-belgeler'])
   },
 
   '/ogg-rehberi/gerekli-belgeler': {
-    eyebrow: 'Başvuru rehberi',
+    eyebrow: 'Başvuru Rehberi',
     title: 'ÖGG kimlik kartı için gerekli belgeler',
-    lead: 'Belge listesi işlem türüne ve güncel uygulamaya göre değişebildiği için ücret ve harç tutarlarında resmî kaynağı esas alın.',
+    lead: 'İlk kimlik kartı müracaatında istenen belgeleri adet ve biçim bilgileriyle birlikte kontrol edin. Sistem üzerinden doğrulanabilen belgelerde fiziki ibraz gerekliliği değişebilir.',
+    facts: ['2 Adet Biyometrik Fotoğraf', '1 Adet İmzalı Dilekçe', '1 Adet Sağlık Raporu', '2 Ayrı Ödeme Belgesi'],
     sections: [
-      { title: 'İlk kimlik kartı müracaatında', bullets: ['İmzalı başvuru/dilekçe bilgileri', 'Öğrenim belgesi veya gerekli durumda diploma fotokopisi', 'İlgili sağlık raporu', 'Biyometrik fotoğraf', 'Güncel harç ve kimlik kartı ücretine ilişkin belgeler'], paragraphs: ['Başvuru e-Devlet üzerinden veya ilgili İl Emniyet Müdürlüğü Özel Güvenlik birimi üzerinden yürütülebilir.'] },
-      { title: 'Güncel tutarları kontrol edin', paragraphs: ['Harç ve kart bedelleri değişebilir. Başvuru yapacağınız tarihte EGM’nin güncel belge listesindeki tutar ve ödeme yöntemlerini esas alın.'] }
+      {
+        title: 'İlk Kimlik Kartı Müracaatında',
+        bullets: [
+          '1 adet imzalı dilekçe — T.C. kimlik numarası yazılı olmalı; gerektiğinde kimlik fotokopisi eklenir.',
+          '1 adet diploma fotokopisi — otomasyondan kontrol edilemeyenlerde belgenin aslı görülür.',
+          '1 adet özel güvenlik görevlisi ruhsat harcı makbuzu — aslı; istenirse güvenlik soruşturması sonucundan sonra teslim edilebilir.',
+          '1 adet sağlık raporu — silahlı veya silahsız statüye uygun karar ibareli; otomasyondan kontrol edilemeyenlerde aslı görülür.',
+          '2 adet biyometrik fotoğraf — beyaz fonlu, açık renk giysi ile, son 6 ay içinde cepheden çekilmiş.',
+          '1 adet kimlik kartı ücreti banka dekontu — istenirse güvenlik soruşturması sonucundan sonra teslim edilebilir.'
+        ],
+        paragraphs: [
+          'Başvurular e-Devlet üzerinden veya başvuru yapılan ilin İl Emniyet Müdürlüğü Özel Güvenlik Şube Müdürlüğü / ilgili birimi üzerinden alınabilir.'
+        ]
+      },
+      {
+        title: 'Belge Adedi Konusunda Küçük Not',
+        paragraphs: [
+          'Yukarıdaki adetler EGM’nin kimlik kartı müracaat listesindeki fiziksel belge düzenine göre yazılmıştır. e-Devlet ve ÖGNET üzerinden doğrulanabilen kayıtlar için ayrıca fiziki belge istenip istenmeyeceğini başvuru sırasında kontrol edin.'
+        ]
+      },
+      {
+        title: 'Güncel Tutarları Kontrol Edin',
+        paragraphs: ['Harç ve kart bedelleri değişebilir. Başvuru yapacağınız tarihte EGM’nin güncel belge listesindeki tutar ve ödeme yöntemlerini esas alın.']
+      }
     ],
     source: official('EGM Kimlik Kartı Müracaat Belgeleri', 'ozel-guvenlik-kimlik-karti-muracaatinda-istenilen-belgeler'),
-    related: related(['Sağlık raporu', '/ogg-rehberi/saglik-raporu'], ['Kimlik yenileme', '/ogg-rehberi/kimlik-yenileme'], ['İletişim', '/iletisim'])
+    related: related(['Sağlık Raporu', '/ogg-rehberi/saglik-raporu'], ['Kimlik Yenileme', '/ogg-rehberi/kimlik-yenileme'], ['Nasıl ÖGG Olunur?', '/ogg-rehberi/nasil-ogg-olunur'], ['İletişim', '/iletisim'])
   },
 
   '/ogg-rehberi/saglik-raporu': {
-    eyebrow: 'Sağlık süreci',
+    eyebrow: 'Sağlık Süreci',
     title: 'Özel güvenlik sağlık raporu',
-    lead: 'Temel eğitime başlamadan önce adayın hedeflediği görev türüne uygun sağlık raporunu tamamlaması gerekir.',
-    facts: ['Aday sağlık raporu e-Rapor sistemi üzerinden düzenlenir', 'Silahlı ve silahsız karar ibareleri farklıdır', 'Temel eğitim öncesi alınır', 'Yenileme kimlik müracaatında tekrar istenmez'],
+    lead: 'Temel eğitime başlamadan önce adayın hedeflediği görev türüne uygun aday sağlık raporunu tamamlaması gerekir.',
+    facts: ['Tam Teşekküllü Hastane', 'Sağlık Kurulu / Heyet', 'e-Rapor', 'Temel Eğitimden Önce'],
     sections: [
-      { title: 'Raporun karar kısmı', paragraphs: ['Sağlık raporunun karar bölümünde ilgili yönetmeliğe uygun olarak silahlı veya silahsız özel güvenlik görevlisi olabileceğine ilişkin kesin karar yer alır.'] },
-      { title: 'Neden eğitimden önce?', paragraphs: ['Sağlık uygunluğu kesinleşmeden eğitime başlanması, olumsuz rapor halinde adayın zaman ve ücret kaybetmesine yol açabilir. Bu nedenle sağlık sürecinin kayıt planıyla birlikte yürütülmesi gerekir.'] },
-      { title: 'Yenilemede durum', paragraphs: ['EGM’nin eğitim SSS sayfasına göre yenileme eğitiminden sonra kimlik kartı yenileme müracaatında sağlık raporu alınması gerekmemektedir.'] }
+      {
+        title: 'Nereye Başvurulur?',
+        paragraphs: [
+          'Aday sağlık raporu, yönetmelikte tanımlanan tam teşekküllü hastaneler tarafından düzenlenir. Başvuru için hastanenin Sağlık Kurulu / Heyet birimine müracaat edilir.',
+          'Hastaneyi ararken veya randevu alırken özellikle “Özel Güvenlik Görevlisi Aday Sağlık Raporu” düzenleyip düzenlemediklerini sorun. Başvuru şekli, randevu ve ücret uygulaması hastaneye göre değişebilir.'
+        ]
+      },
+      {
+        title: 'Tam Teşekküllü Hastane',
+        paragraphs: [
+          'Yönetmelik; gerekli uzmanlık branşlarını bünyesinde bulunduran ve bu uzmanların katılımıyla sağlık kurulu oluşturabilen sağlık kurumlarını tam teşekküllü hastane olarak tanımlar. Aday raporu e-Rapor sistemi üzerinden düzenlenir.'
+        ]
+      },
+      {
+        title: 'Raporun Karar Kısmı',
+        paragraphs: ['Sağlık raporunun karar bölümünde hedeflenen statüye göre “Silahlı Özel Güvenlik Görevlisi Olur” veya “Silahsız Özel Güvenlik Görevlisi Olur” şeklinde kesin karar bulunmalıdır.']
+      },
+      {
+        title: 'Neden Eğitimden Önce?',
+        paragraphs: ['Sağlık uygunluğu kesinleşmeden eğitime başlanması, olumsuz rapor halinde adayın zaman ve ücret kaybetmesine yol açabilir. Bu nedenle aday sağlık raporu temel eğitim öncesinde tamamlanmalıdır.']
+      },
+      {
+        title: 'Yenilemede Durum',
+        paragraphs: ['EGM’nin eğitim SSS sayfasına göre yenileme eğitiminden sonra kimlik kartı yenileme müracaatında sağlık raporu yeniden alınması gerekmemektedir.']
+      }
     ],
     source: official('EGM Sağlık Şartları Yönetmeliği', 'ozel-guvenlik-gorevlileri-saglik-sartlari-yonetmeligi'),
-    related: related(['Nasıl ÖGG olunur?', '/ogg-rehberi/nasil-ogg-olunur'], ['Gerekli belgeler', '/ogg-rehberi/gerekli-belgeler'])
+    related: related(['Nasıl ÖGG Olunur?', '/ogg-rehberi/nasil-ogg-olunur'], ['Gerekli Belgeler', '/ogg-rehberi/gerekli-belgeler'], ['Temel Eğitimler', '/egitimler'])
   },
 
   '/ogg-rehberi/kimlik-yenileme': {
