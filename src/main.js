@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import InnerSite from './pages/InnerSite.vue'
-import { normalizePath, resolvePage } from './content/sitePages.js'
+import { normalizePath, resolvePage } from './content/pages.js'
 import './styles.css'
 import './experience.css'
 import './polish.css'
