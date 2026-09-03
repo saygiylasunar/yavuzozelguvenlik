@@ -8,12 +8,16 @@ const selectedService = ref(0)
 const headerCompact = ref(false)
 const intentOpen = ref(false)
 const userIntent = ref('')
+const themePreference = ref('auto')
 const examDate = new Date('2026-10-24T10:00:00+03:00')
 
 const daysUntilExam = computed(() => {
   const diff = examDate.getTime() - Date.now()
   return Math.max(0, Math.ceil(diff / 86400000))
 })
+
+const themeLabel = computed(() => ({ auto: 'Auto', light: 'Açık', dark: 'Koyu' })[themePreference.value])
+const themeIcon = computed(() => ({ auto: 'brightness_auto', light: 'light_mode', dark: 'dark_mode' })[themePreference.value])
 
 const intentProfiles = {
   browse: {
@@ -136,6 +140,7 @@ const timeline = [
 
 let observer
 let intentTimer
+let themeMedia
 
 const closeMenu = () => {
   menuOpen.value = false
@@ -155,7 +160,38 @@ const resetIntent = () => {
   intentOpen.value = true
 }
 
+const applyTheme = () => {
+  if (!themeMedia) return
+  const resolvedTheme = themePreference.value === 'auto'
+    ? (themeMedia.matches ? 'dark' : 'light')
+    : themePreference.value
+
+  document.documentElement.dataset.theme = resolvedTheme
+  document.documentElement.style.colorScheme = resolvedTheme
+
+  const themeMeta = document.querySelector('meta[name="theme-color"]')
+  themeMeta?.setAttribute('content', resolvedTheme === 'dark' ? '#07151d' : '#f4f0e8')
+}
+
+const cycleTheme = () => {
+  const themes = ['auto', 'light', 'dark']
+  const nextIndex = (themes.indexOf(themePreference.value) + 1) % themes.length
+  themePreference.value = themes[nextIndex]
+  localStorage.setItem('yavuz-theme', themePreference.value)
+  applyTheme()
+}
+
+const onSystemThemeChange = () => {
+  if (themePreference.value === 'auto') applyTheme()
+}
+
 onMounted(() => {
+  themeMedia = window.matchMedia('(prefers-color-scheme: dark)')
+  const storedTheme = localStorage.getItem('yavuz-theme')
+  if (['auto', 'light', 'dark'].includes(storedTheme)) themePreference.value = storedTheme
+  applyTheme()
+  themeMedia.addEventListener?.('change', onSystemThemeChange)
+
   const storedIntent = localStorage.getItem('yavuz-visitor-intent')
   if (storedIntent && intentProfiles[storedIntent]) {
     userIntent.value = storedIntent
@@ -186,6 +222,7 @@ onBeforeUnmount(() => {
   observer?.disconnect()
   window.clearTimeout(intentTimer)
   window.removeEventListener('scroll', onScroll)
+  themeMedia?.removeEventListener?.('change', onSystemThemeChange)
 })
 </script>
 
@@ -216,21 +253,26 @@ onBeforeUnmount(() => {
           </span>
         </a>
 
+        <nav id="navigation" class="navigation" :class="{ 'is-open': menuOpen }">
+          <a href="#egitimler" @click="closeMenu">Eğitimler</a>
+          <a href="#sinav" @click="closeMenu">Sınav merkezi</a>
+          <a href="#rehber" @click="closeMenu">ÖGG rehberi</a>
+          <a href="#kurumsal" @click="closeMenu">Kurumsal</a>
+          <a href="#hizmetler" @click="closeMenu">Hizmetler</a>
+          <a class="nav-cta" :href="activeIntent?.href || '#iletisim'" @click="closeMenu">{{ activeIntent?.cta || 'Hızlı bilgi' }}</a>
+        </nav>
+
+        <button class="theme-toggle" type="button" :aria-label="`Tema: ${themeLabel}. Değiştirmek için tıklayın.`" :title="`Tema: ${themeLabel}`" @click="cycleTheme">
+          <span class="material-symbols-rounded" aria-hidden="true">{{ themeIcon }}</span>
+          <small>{{ themeLabel }}</small>
+        </button>
+
         <button class="menu-button" type="button" :aria-expanded="menuOpen" aria-controls="navigation" @click="menuOpen = !menuOpen">
           <span></span>
           <span></span>
           <span></span>
           <b>Menü</b>
         </button>
-
-        <nav id="navigation" class="navigation" :class="{ 'is-open': menuOpen }">
-          <a href="#hizmetler" @click="closeMenu">Hizmetler</a>
-          <a href="#egitimler" @click="closeMenu">Eğitimler</a>
-          <a href="#sinav" @click="closeMenu">Sınav merkezi</a>
-          <a href="#rehber" @click="closeMenu">ÖGG rehberi</a>
-          <a href="#kurumsal" @click="closeMenu">Kurumsal</a>
-          <a class="nav-cta" :href="activeIntent?.href || '#iletisim'" @click="closeMenu">{{ activeIntent?.cta || 'Hızlı bilgi' }}</a>
-        </nav>
       </div>
     </header>
 
@@ -247,6 +289,7 @@ onBeforeUnmount(() => {
             <div class="hero-actions">
               <a class="button button--warm" :href="activeIntent?.heroHref || '#egitimler'">{{ activeIntent?.hero || 'Eğitimleri incele' }}</a>
               <button class="button button--glass button--route" type="button" @click="resetIntent">Bana uygun yolu bul</button>
+              <a class="button button--glass button--quick" href="#hizli-islemler">Hızlı işlemler</a>
             </div>
             <div class="hero-trust">
               <div><strong>Temel + yenileme</strong><span>ÖGG eğitimleri</span></div>
@@ -287,7 +330,7 @@ onBeforeUnmount(() => {
         </div>
       </section>
 
-      <section class="quick-section">
+      <section id="hizli-islemler" class="quick-section">
         <div class="container">
           <div class="section-heading section-heading--split" data-reveal>
             <div>
@@ -304,50 +347,6 @@ onBeforeUnmount(() => {
               <p>{{ item.text }}</p>
               <span class="bento-arrow">→</span>
             </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="hizmetler" class="services-section">
-        <div class="container">
-          <div class="section-heading section-heading--split" data-reveal>
-            <div>
-              <p class="eyebrow">Saha hizmetleri</p>
-              <h2>Nereleri koruyoruz?</h2>
-            </div>
-            <p>Yavuz’un geçmiş saha referansları, eğitim kurumunun arkasında gerçek bir güvenlik hizmeti deneyimi bulunduğunu gösteriyor.</p>
-          </div>
-
-          <div class="service-console" data-reveal>
-            <div class="service-tabs" role="tablist" aria-label="Güvenlik hizmet alanları">
-              <button v-for="(service, index) in services" :key="service.title" type="button" :class="{ 'is-active': selectedService === index }" @click="selectedService = index">
-                <span>0{{ index + 1 }}</span>
-                {{ service.title }}
-              </button>
-            </div>
-
-            <div class="service-detail">
-              <div class="service-plan" aria-hidden="true">
-                <span class="service-plan__perimeter"></span>
-                <span class="service-plan__building service-plan__building--a"></span>
-                <span class="service-plan__building service-plan__building--b"></span>
-                <span class="service-plan__route"></span>
-                <span class="service-plan__checkpoint service-plan__checkpoint--a"></span>
-                <span class="service-plan__checkpoint service-plan__checkpoint--b"></span>
-                <span class="service-plan__guard"></span>
-                <span class="service-plan__camera"></span>
-                <span class="service-plan__gate"></span>
-              </div>
-              <div class="service-detail__copy" :key="selectedService">
-                <p class="eyebrow eyebrow--light">{{ services[selectedService].kicker }}</p>
-                <h3>{{ services[selectedService].title }}</h3>
-                <p>{{ services[selectedService].text }}</p>
-                <div class="reference-list">
-                  <span>Geçmiş referanslardan örnekler</span>
-                  <strong v-for="reference in services[selectedService].refs" :key="reference">{{ reference }}</strong>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -426,6 +425,50 @@ onBeforeUnmount(() => {
         </div>
       </section>
 
+      <section id="hizmetler" class="services-section">
+        <div class="container">
+          <div class="section-heading section-heading--split" data-reveal>
+            <div>
+              <p class="eyebrow">Saha hizmetleri</p>
+              <h2>Nereleri koruyoruz?</h2>
+            </div>
+            <p>Yavuz’un geçmiş saha referansları, eğitim kurumunun arkasında gerçek bir güvenlik hizmeti deneyimi bulunduğunu gösteriyor.</p>
+          </div>
+
+          <div class="service-console" data-reveal>
+            <div class="service-tabs" role="tablist" aria-label="Güvenlik hizmet alanları">
+              <button v-for="(service, index) in services" :key="service.title" type="button" :class="{ 'is-active': selectedService === index }" @click="selectedService = index">
+                <span>0{{ index + 1 }}</span>
+                {{ service.title }}
+              </button>
+            </div>
+
+            <div class="service-detail">
+              <div class="service-plan" aria-hidden="true">
+                <span class="service-plan__perimeter"></span>
+                <span class="service-plan__building service-plan__building--a"></span>
+                <span class="service-plan__building service-plan__building--b"></span>
+                <span class="service-plan__route"></span>
+                <span class="service-plan__checkpoint service-plan__checkpoint--a"></span>
+                <span class="service-plan__checkpoint service-plan__checkpoint--b"></span>
+                <span class="service-plan__guard"></span>
+                <span class="service-plan__camera"></span>
+                <span class="service-plan__gate"></span>
+              </div>
+              <div class="service-detail__copy" :key="selectedService">
+                <p class="eyebrow eyebrow--light">{{ services[selectedService].kicker }}</p>
+                <h3>{{ services[selectedService].title }}</h3>
+                <p>{{ services[selectedService].text }}</p>
+                <div class="reference-list">
+                  <span>Geçmiş referanslardan örnekler</span>
+                  <strong v-for="reference in services[selectedService].refs" :key="reference">{{ reference }}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="iletisim" class="contact-section">
         <div class="container contact-grid" data-reveal>
           <div>
@@ -449,6 +492,11 @@ onBeforeUnmount(() => {
           <span><strong>Yavuz Özel Güvenlik</strong><small>Akşehir · Konya</small></span>
         </div>
         <p>Özel güvenlik eğitimi · Güvenlik hizmetleri · ÖGG bilgi merkezi</p>
+        <a class="footer-credit" href="https://saygiylasunar.com" target="_blank" rel="noreferrer">
+          <span>Site</span>
+          <strong>Ersen Filiz · Saygıyla Sunar</strong>
+          <b>↗</b>
+        </a>
       </div>
     </footer>
   </div>
