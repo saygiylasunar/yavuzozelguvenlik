@@ -129,6 +129,25 @@ onBeforeUnmount(() => themeMedia?.removeEventListener?.('change', onSystemThemeC
               </div>
             </div>
 
+            <section v-if="page.accordions?.length" class="inner-accordion-section">
+              <p class="eyebrow">Uygunluk ve Gereksinimler</p>
+              <h2>Başlamadan Önce Kontrol Edin</h2>
+              <div class="inner-accordion">
+                <details v-for="item in page.accordions" :key="item.title">
+                  <summary>
+                    <strong>{{ item.title }}</strong>
+                    <span class="material-symbols-rounded" aria-hidden="true">add</span>
+                  </summary>
+                  <div>
+                    <p>{{ item.text }}</p>
+                    <ul v-if="item.bullets?.length">
+                      <li v-for="bullet in item.bullets" :key="bullet">{{ bullet }}</li>
+                    </ul>
+                  </div>
+                </details>
+              </div>
+            </section>
+
             <div v-if="page.timeline?.length" class="inner-timeline">
               <div v-for="item in page.timeline" :key="item[0]">
                 <strong>{{ item[0] }}</strong><span>{{ item[1] }}</span>
@@ -142,6 +161,16 @@ onBeforeUnmount(() => themeMedia?.removeEventListener?.('change', onSystemThemeC
                 <li v-for="bullet in section.bullets" :key="bullet">{{ bullet }}</li>
               </ul>
               <a v-if="section.action" class="button button--warm inner-action" :href="section.action.url" :target="section.action.url.startsWith('http') ? '_blank' : undefined" rel="noreferrer">{{ section.action.label }}</a>
+            </section>
+
+            <section v-if="page.cta" class="inner-page-cta">
+              <p class="eyebrow">{{ page.cta.eyebrow }}</p>
+              <h2>{{ page.cta.title }}</h2>
+              <p>{{ page.cta.text }}</p>
+              <div class="inner-page-cta__actions">
+                <a class="button button--warm" :href="page.cta.primary.url">{{ page.cta.primary.label }}</a>
+                <a v-if="page.cta.secondary" class="button inner-page-cta__secondary" :href="page.cta.secondary.url" :target="page.cta.secondary.url.startsWith('http') ? '_blank' : undefined" rel="noreferrer">{{ page.cta.secondary.label }}</a>
+              </div>
             </section>
 
             <div v-if="page.source" class="official-source">
