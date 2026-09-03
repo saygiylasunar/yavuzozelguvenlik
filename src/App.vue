@@ -11,6 +11,12 @@ const userIntent = ref('')
 const themePreference = ref('auto')
 const examDate = new Date('2026-10-24T10:00:00+03:00')
 
+const whatsappNumber = '905454253180'
+const whatsappUrl = message => `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+const whatsappGeneral = whatsappUrl('Merhaba, Yavuz Özel Güvenlik hakkında bilgi almak istiyorum.')
+const whatsappEducation = whatsappUrl('Merhaba, özel güvenlik eğitimi hakkında bilgi almak istiyorum.')
+const whatsappService = whatsappUrl('Merhaba, işletmem veya tesisim için özel güvenlik hizmeti hakkında bilgi almak istiyorum.')
+
 const daysUntilExam = computed(() => {
   const diff = examDate.getTime() - Date.now()
   return Math.max(0, Math.ceil(diff / 86400000))
@@ -228,7 +234,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="page-shell">
-    <IntentGate :open="intentOpen" :current="userIntent" @select="selectIntent" @close="intentOpen = false" />
+    <IntentGate :open="intentOpen" :current="userIntent" :whatsapp-url="whatsappGeneral" @select="selectIntent" @close="intentOpen = false" />
 
     <a class="skip-link" href="#main">İçeriğe geç</a>
 
@@ -365,7 +371,7 @@ onBeforeUnmount(() => {
               <p>{{ training.type }}</p>
               <h3>{{ training.title }}</h3>
               <span>{{ training.text }}</span>
-              <a href="#iletisim">Bilgi al <b>→</b></a>
+              <a :href="whatsappEducation" target="_blank" rel="noreferrer">WhatsApp’tan bilgi al <b>→</b></a>
             </article>
           </div>
         </div>
@@ -432,7 +438,7 @@ onBeforeUnmount(() => {
               <p class="eyebrow">Saha hizmetleri</p>
               <h2>Nereleri koruyoruz?</h2>
             </div>
-            <p>Yavuz’un geçmiş saha referansları, eğitim kurumunun arkasında gerçek bir güvenlik hizmeti deneyimi bulunduğunu gösteriyor.</p>
+            <p>Yavuz, eğitim faaliyetlerinin yanında fabrika, şantiye, eğitim kurumu ve enerji tesisi gibi sahalar için özel güvenlik hizmeti sunan şirket yapısıyla da hizmet veriyor.</p>
           </div>
 
           <div class="service-console" data-reveal>
@@ -463,6 +469,10 @@ onBeforeUnmount(() => {
                   <span>Geçmiş referanslardan örnekler</span>
                   <strong v-for="reference in services[selectedService].refs" :key="reference">{{ reference }}</strong>
                 </div>
+                <a class="service-contact-cta" :href="whatsappService" target="_blank" rel="noreferrer">
+                  <span class="material-symbols-rounded" aria-hidden="true">chat</span>
+                  Güvenlik hizmeti için WhatsApp
+                </a>
               </div>
             </div>
           </div>
@@ -474,16 +484,22 @@ onBeforeUnmount(() => {
           <div>
             <p class="eyebrow">İletişim</p>
             <h2>Aklınızdaki soruyu doğrudan sorun.</h2>
-            <p>Eğitim türü, kayıt süreci, sınav veya güvenlik hizmeti hakkında kurumla iletişime geçebilirsiniz.</p>
+            <p>Eğitim türü, kayıt süreci, sınav veya eğitim dışındaki özel güvenlik hizmetleri hakkında kurumla iletişime geçebilirsiniz.</p>
           </div>
           <div class="contact-actions">
-            <a href="tel:+903328136900"><span>Telefon</span><strong>0 332 813 69 00</strong></a>
+            <a class="contact-whatsapp" :href="whatsappGeneral" target="_blank" rel="noreferrer"><span>WhatsApp · Cep telefonu</span><strong>0545 425 31 80</strong></a>
+            <a href="tel:+903328136900"><span>Sabit telefon</span><strong>0 332 813 69 00</strong></a>
             <a href="mailto:iletisim@yavuzozelguvenlik.com.tr"><span>E-posta</span><strong>iletisim@yavuzozelguvenlik.com.tr</strong></a>
-            <div><span>Adres</span><strong>Yeni Mah. Cumhuriyet Cad. A Blok No:49/B<br>Akşehir · Konya</strong></div>
+            <div><span>Adres</span><strong>Yeni Mahalle Cumhuriyet Caddesi Kürşat 6 Sitesi A Blok 49/B<br>Akşehir / Konya</strong></div>
           </div>
         </div>
       </section>
     </main>
+
+    <a class="whatsapp-float" :href="whatsappGeneral" target="_blank" rel="noreferrer" aria-label="WhatsApp'tan Yavuz Özel Güvenlik ile iletişime geç">
+      <span class="material-symbols-rounded" aria-hidden="true">chat</span>
+      <span class="whatsapp-float__copy"><small>WhatsApp</small><strong>0545 425 31 80</strong></span>
+    </a>
 
     <footer class="footer">
       <div class="container footer-grid">
