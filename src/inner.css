@@ -642,3 +642,77 @@ html[data-theme='dark'] .inner-page-cta {
     transition: none;
   }
 }
+
+
+/* Quick contact attention without visual noise */
+.inner-contact-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.inner-contact-card::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  right: -54px;
+  top: -58px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 221, 210, 0.16), transparent 68%);
+  pointer-events: none;
+  animation: quick-contact-breathe 3.6s ease-in-out infinite;
+}
+
+.inner-contact-card:hover {
+  border-color: rgba(46, 113, 111, 0.32);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(13, 38, 53, 0.1);
+}
+
+.inner-contact-card__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quick-contact-live {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #42a677;
+  box-shadow: 0 0 0 0 rgba(66, 166, 119, 0.34);
+  animation: quick-contact-pulse 2.2s ease-out infinite;
+}
+
+.inner-contact-card > a {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inner-contact-card > a:hover {
+  background: #196a50;
+  transform: translateX(3px);
+  box-shadow: 0 10px 22px rgba(31, 116, 88, 0.2);
+}
+
+@keyframes quick-contact-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(66, 166, 119, 0.34); }
+  72% { box-shadow: 0 0 0 9px rgba(66, 166, 119, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(66, 166, 119, 0); }
+}
+
+@keyframes quick-contact-breathe {
+  0%, 100% { opacity: 0.5; transform: scale(0.92); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inner-contact-card::after,
+  .quick-contact-live {
+    animation: none;
+  }
+}
