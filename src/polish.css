@@ -182,10 +182,10 @@
   flex: none;
   padding-right: 34px;
   color: #d5e9e6;
-  font-family: 'Manrope', sans-serif;
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 0.1em;
+  font-family: 'Michroma', 'Manrope', sans-serif;
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   white-space: pre;
 }
 
@@ -218,7 +218,6 @@ h4,
 .button,
 .nav-cta,
 .command-link,
-.eyebrow,
 .training-card > p,
 .service-tabs button {
   font-family: 'Manrope', 'DM Sans', sans-serif;
@@ -289,6 +288,52 @@ h4,
 .command-details,
 .reference-list {
   line-height: 1.68;
+}
+
+/* Michroma: restrained system / control-room accent */
+.eyebrow,
+.command-card__head,
+.bento-index,
+.training-card__number,
+.service-tabs button span,
+.intent-eyebrow,
+.intent-panel__visual-copy > span,
+.intent-identity__brand > span,
+.intent-identity__contact > p,
+.intent-identity__contact span,
+.security-map .labels text {
+  font-family: 'Michroma', 'Manrope', sans-serif;
+  font-weight: 400;
+}
+
+.eyebrow {
+  font-size: 10px;
+  line-height: 1.55;
+  letter-spacing: 0.14em;
+}
+
+.command-card__head {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+}
+
+.bento-index,
+.training-card__number,
+.service-tabs button span {
+  letter-spacing: 0.1em;
+}
+
+.intent-eyebrow,
+.intent-panel__visual-copy > span,
+.intent-identity__brand > span,
+.intent-identity__contact > p,
+.intent-identity__contact span {
+  letter-spacing: 0.11em;
+}
+
+.security-map .labels text {
+  font-size: 8.5px;
+  letter-spacing: 1.2px;
 }
 
 /* Material Symbols Rounded: one calm icon language */
@@ -372,8 +417,8 @@ h4,
 
   .service-ticker__track::before,
   .service-ticker__track::after {
-    font-size: 11px;
-    letter-spacing: 0.085em;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
   }
 
   .hero .security-map__svg {
