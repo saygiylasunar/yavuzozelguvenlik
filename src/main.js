@@ -14,6 +14,19 @@ const currentPath = normalizePath(window.location.pathname)
 applyRuntimeSeo(currentPath)
 
 if (currentPath === '/') {
+  const intentStorageKey = 'yavuz-visitor-intent'
+  const intentSessionKey = 'yavuz-intent-session-v2'
+
+  if (!sessionStorage.getItem(intentSessionKey)) {
+    localStorage.removeItem(intentStorageKey)
+  }
+
+  document.addEventListener('click', event => {
+    if (event.target.closest('.intent-option, .intent-browse')) {
+      sessionStorage.setItem(intentSessionKey, '1')
+    }
+  }, true)
+
   createApp(App).mount('#app')
 
   requestAnimationFrame(() => {
@@ -28,6 +41,21 @@ if (currentPath === '/') {
     document.querySelectorAll('.navigation > a:not(.nav-cta)').forEach(link => {
       const route = navRoutes[link.getAttribute('href')]
       if (route) link.setAttribute('href', route)
+    })
+
+    const trustCopy = [
+      ['Temel + Yenileme', 'ÖGG Eğitimleri'],
+      ['Saha Deneyimi', 'Gerçek Hizmet Geçmişi'],
+      ['Bilgi Merkezi', 'Soru · Not · Mevzuat'],
+    ]
+
+    document.querySelectorAll('.hero-trust > div').forEach((item, index) => {
+      const copy = trustCopy[index]
+      if (!copy) return
+      const strong = item.querySelector('strong')
+      const span = item.querySelector('span')
+      if (strong) strong.textContent = copy[0]
+      if (span) span.textContent = copy[1]
     })
 
     const quickRoutes = [
