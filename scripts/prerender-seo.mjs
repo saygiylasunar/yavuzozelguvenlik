@@ -31,12 +31,14 @@ const seoBlock = route => {
     `<meta data-seo property="og:image:type" content="image/svg+xml" />`,
     `<meta data-seo property="og:image:width" content="1200" />`,
     `<meta data-seo property="og:image:height" content="630" />`,
+    `<meta data-seo property="og:image:alt" content="${escapeHtml(seo.imageAlt)}" />`,
     `<meta data-seo property="og:site_name" content="Yavuz Özel Güvenlik" />`,
     `<meta data-seo property="og:locale" content="tr_TR" />`,
     `<meta data-seo name="twitter:card" content="summary_large_image" />`,
     `<meta data-seo name="twitter:title" content="${escapeHtml(seo.title)}" />`,
     `<meta data-seo name="twitter:description" content="${escapeHtml(seo.description)}" />`,
     `<meta data-seo name="twitter:image" content="${escapeHtml(seo.image)}" />`,
+    `<meta data-seo name="twitter:image:alt" content="${escapeHtml(seo.imageAlt)}" />`,
     `<script data-seo type="application/ld+json">${schema}</script>`,
   ].join('\n  ')
 }
