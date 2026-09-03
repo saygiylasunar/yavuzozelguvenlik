@@ -286,7 +286,10 @@ onBeforeUnmount(() => {
         <button v-if="activeIntent" class="intent-status" type="button" @click="resetIntent">
           <i></i>{{ activeIntent.label }} <b>Değiştir</b>
         </button>
-        <a v-else href="tel:+903328136900">0 332 813 69 00</a>
+        <a v-else class="utility-phone" href="tel:+903328136900">
+          <span class="material-symbols-rounded" aria-hidden="true">call</span>
+          <strong>0 332 813 69 00</strong>
+        </a>
       </div>
     </div>
 
@@ -478,7 +481,10 @@ onBeforeUnmount(() => {
       <section id="kurumsal" class="story-section">
         <div class="container story-grid">
           <div class="story-copy" data-reveal>
-            <p class="eyebrow">Kurumsal hafıza</p>
+            <div class="story-brand-mark" aria-hidden="true">
+              <img src="/brand/yavuz-logo.webp" alt="" width="128" height="128">
+            </div>
+            <p class="eyebrow">Kurumsal Hafıza</p>
             <h2>Bir kurs sayfasından daha fazlası.</h2>
             <p>Yıllara yayılan eğitim, saha ve içerik birikimi kurumun bugün sunduğu hizmetlerin temelini oluşturuyor.</p>
           </div>
@@ -546,11 +552,25 @@ onBeforeUnmount(() => {
             <h2>Aklınızdaki soruyu doğrudan sorun.</h2>
             <p>Eğitim türü, kayıt süreci, sınav veya eğitim dışındaki özel güvenlik hizmetleri hakkında kurumla iletişime geçebilirsiniz.</p>
           </div>
-          <div class="contact-actions">
-            <a class="contact-whatsapp" :href="whatsappGeneral" target="_blank" rel="noreferrer"><span>WhatsApp · Cep telefonu</span><strong>0545 425 31 80</strong></a>
-            <a href="tel:+903328136900"><span>Sabit telefon</span><strong>0 332 813 69 00</strong></a>
-            <a href="mailto:iletisim@yavuzozelguvenlik.com.tr"><span>E-posta</span><strong>iletisim@yavuzozelguvenlik.com.tr</strong></a>
-            <div><span>Adres</span><strong>Yeni Mahalle Cumhuriyet Caddesi Kürşat 6 Sitesi A Blok 49/B<br>Akşehir / Konya</strong></div>
+          <div class="contact-side">
+            <div class="contact-actions">
+              <a class="contact-whatsapp" :href="whatsappGeneral" target="_blank" rel="noreferrer"><span>WhatsApp · Cep Telefonu</span><strong>0545 425 31 80</strong></a>
+              <a href="tel:+903328136900"><span>Sabit Telefon</span><strong>0 332 813 69 00</strong></a>
+              <a href="mailto:iletisim@yavuzozelguvenlik.com.tr"><span>E-posta</span><strong>iletisim@yavuzozelguvenlik.com.tr</strong></a>
+              <div><span>Adres</span><strong>Yeni Mahalle Cumhuriyet Caddesi Kürşat 6 Sitesi A Blok 49/B<br>Akşehir / Konya</strong></div>
+            </div>
+            <div class="contact-map">
+              <iframe
+                title="Yavuz Özel Güvenlik Google Maps konumu"
+                src="https://www.google.com/maps?q=Yeni+Mahalle+Cumhuriyet+Caddesi+K%C3%BCr%C5%9Fat+6+Sitesi+A+Blok+49%2FB+Ak%C5%9Fehir+Konya&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+              <a href="https://www.google.com/maps/search/?api=1&query=Yeni+Mahalle+Cumhuriyet+Caddesi+K%C3%BCr%C5%9Fat+6+Sitesi+A+Blok+49%2FB+Ak%C5%9Fehir+Konya" target="_blank" rel="noreferrer">
+                <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
+                Google Maps’te Aç
+              </a>
+            </div>
           </div>
         </div>
       </section>
