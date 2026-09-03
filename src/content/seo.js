@@ -3,6 +3,7 @@ import { normalizePath, sitePages } from './pages.js'
 export const SITE_URL = 'https://yavuzozelguvenlik.com.tr'
 export const SITE_NAME = 'Yavuz Özel Güvenlik'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og/yavuz-guvenlik.svg`
+export const LOGO_IMAGE = `${SITE_URL}/brand/yavuz-logo.webp`
 export const DEFAULT_OG_ALT = 'Yavuz Özel Güvenlik · Akşehir / Konya'
 
 const homeSeo = {
@@ -72,6 +73,12 @@ export const getStructuredData = value => {
       addressCountry: 'TR',
     },
     areaServed: ['Akşehir', 'Konya'],
+    logo: {
+      '@type': 'ImageObject',
+      url: LOGO_IMAGE,
+      width: 128,
+      height: 128,
+    },
     image: DEFAULT_OG_IMAGE,
   }
 
