@@ -1,10 +1,11 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { sitePages } from '../src/content/pages.js'
 import { getSeo, getStructuredData, SITE_URL } from '../src/content/seo.js'
 
-const distDir = new URL('../dist/', import.meta.url)
-const templatePath = new URL('../dist/index.html', import.meta.url)
+const distDir = fileURLToPath(new URL('../dist/', import.meta.url))
+const templatePath = join(distDir, 'index.html')
 const template = await readFile(templatePath, 'utf8')
 const routes = ['/', ...Object.keys(sitePages)]
 
@@ -27,6 +28,7 @@ const seoBlock = route => {
     `<meta data-seo property="og:type" content="website" />`,
     `<meta data-seo property="og:url" content="${escapeHtml(seo.canonical)}" />`,
     `<meta data-seo property="og:image" content="${escapeHtml(seo.image)}" />`,
+    `<meta data-seo property="og:image:type" content="image/svg+xml" />`,
     `<meta data-seo property="og:image:width" content="1200" />`,
     `<meta data-seo property="og:image:height" content="630" />`,
     `<meta data-seo property="og:site_name" content="Yavuz Özel Güvenlik" />`,
@@ -50,9 +52,9 @@ const render = route => {
 
 for (const route of routes) {
   const target = route === '/'
-    ? new URL('../dist/index.html', import.meta.url)
-    : new URL(`../dist${route}/index.html`, import.meta.url)
-  await mkdir(dirname(target.pathname), { recursive: true })
+    ? join(distDir, 'index.html')
+    : join(distDir, route.slice(1), 'index.html')
+  await mkdir(dirname(target), { recursive: true })
   await writeFile(target, render(route), 'utf8')
 }
 
@@ -63,9 +65,9 @@ const sitemap = [
   '</urlset>',
 ].join('\n')
 
-await writeFile(join(distDir.pathname, 'sitemap.xml'), sitemap, 'utf8')
+await writeFile(join(distDir, 'sitemap.xml'), sitemap, 'utf8')
 await writeFile(
-  join(distDir.pathname, 'robots.txt'),
+  join(distDir, 'robots.txt'),
   `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`,
   'utf8',
 )
