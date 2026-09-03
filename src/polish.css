@@ -123,6 +123,20 @@
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.58), 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
+.hero-actions .button {
+  flex: 0 0 auto;
+  min-height: 52px;
+  padding: 0 22px;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: none;
+}
+
+.hero-actions .button--warm {
+  color: #172a32;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 15px 36px rgba(239, 178, 87, 0.18);
+}
+
 .hero-trust strong {
   color: #ffffff;
   font-weight: 700;
@@ -320,6 +334,11 @@ h4,
   .contact-grid h2,
   .intent-panel h2 {
     line-height: 1.24;
+  }
+
+  .hero-actions .button {
+    min-height: 50px;
+    padding-inline: 18px;
   }
 }
 
