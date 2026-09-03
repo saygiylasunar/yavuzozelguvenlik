@@ -78,6 +78,11 @@ html[data-theme='dark'] .brand-symbol {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.09);
 }
 
+html[data-theme='dark'] .brand-symbol--logo {
+  background: transparent;
+  box-shadow: none;
+}
+
 html[data-theme='dark'] .menu-button span {
   background: var(--theme-heading);
 }
