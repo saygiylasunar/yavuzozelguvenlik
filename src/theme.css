@@ -1,0 +1,255 @@
+:root {
+  color-scheme: light dark;
+  --theme-bg: #f4f0e8;
+  --theme-surface: #fbfaf6;
+  --theme-card: #ffffff;
+  --theme-soft: #f6f1e9;
+  --theme-story: #e5eee9;
+  --theme-text: #142733;
+  --theme-heading: #0d2635;
+  --theme-muted: #65757c;
+  --theme-subtle: #718087;
+  --theme-line: rgba(13, 38, 53, 0.14);
+  --theme-header: rgba(250, 248, 242, 0.96);
+}
+
+body {
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-bg: #07151d;
+    --theme-surface: #0b1b23;
+    --theme-card: #10242d;
+    --theme-soft: #0a1921;
+    --theme-story: #10251f;
+    --theme-text: #dce8e6;
+    --theme-heading: #f3f7f6;
+    --theme-muted: #a8bcba;
+    --theme-subtle: #8fa6a4;
+    --theme-line: rgba(219, 239, 235, 0.12);
+    --theme-header: rgba(7, 21, 29, 0.96);
+  }
+
+  body {
+    background: var(--theme-bg);
+    color: var(--theme-text);
+  }
+
+  .site-header {
+    border-bottom-color: var(--theme-line);
+    background: var(--theme-header);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+  }
+
+  .brand strong,
+  .navigation,
+  .menu-button,
+  .section-heading h2,
+  .guide-intro h2,
+  .story-copy h2,
+  .contact-grid h2,
+  .training-card h3,
+  .guide-item strong,
+  .bento-card strong {
+    color: var(--theme-heading);
+  }
+
+  .brand small {
+    color: #91aaa8;
+  }
+
+  .brand-symbol {
+    background: #15343f;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.09);
+  }
+
+  .menu-button span {
+    background: var(--theme-heading);
+  }
+
+  .navigation {
+    background: transparent;
+  }
+
+  .quick-section,
+  .training-section {
+    background: var(--theme-bg);
+  }
+
+  .services-section {
+    background: var(--theme-surface);
+  }
+
+  .guide-section {
+    background: var(--theme-soft);
+  }
+
+  .story-section {
+    background: var(--theme-story);
+  }
+
+  .section-heading > p:last-child,
+  .guide-intro > p:last-child,
+  .story-copy > p:last-child,
+  .contact-grid > div > p:last-child,
+  .training-card > span,
+  .bento-card p,
+  .timeline span {
+    color: var(--theme-muted);
+  }
+
+  .bento-card,
+  .training-card,
+  .guide-panel {
+    border-color: var(--theme-line);
+    background: var(--theme-card);
+    color: var(--theme-text);
+  }
+
+  .bento-card:not(.bento-card--featured) .bento-index {
+    color: #809896;
+  }
+
+  .bento-card:not(.bento-card--featured) .bento-arrow,
+  .training-card a b,
+  .guide-item span {
+    color: #8fd0c4;
+  }
+
+  .training-card__number {
+    color: #28404a;
+  }
+
+  .training-card::before {
+    background: radial-gradient(circle, rgba(99, 181, 168, 0.11), transparent 70%);
+  }
+
+  .guide-item {
+    border-bottom-color: var(--theme-line);
+  }
+
+  .timeline::before {
+    background: rgba(210, 235, 230, 0.16);
+  }
+
+  .timeline strong {
+    color: #8fd0c4;
+  }
+
+  .timeline strong::after {
+    box-shadow: 0 0 0 6px var(--theme-story);
+  }
+
+  .contact-section {
+    background: #2a2116;
+  }
+
+  .contact-grid .eyebrow {
+    color: #efbf69;
+  }
+
+  .contact-actions {
+    background: #151d21;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .contact-actions > a,
+  .contact-actions > div {
+    border-bottom-color: rgba(255, 255, 255, 0.09);
+  }
+
+  .contact-actions span {
+    color: #9eaaa7;
+  }
+
+  .contact-actions strong {
+    color: #f2f6f5;
+  }
+
+  .bento-card:hover,
+  .training-card:hover {
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+  }
+
+  .intent-overlay .intent-panel {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: #0d1d25;
+    box-shadow: 0 36px 120px rgba(0, 0, 0, 0.56);
+  }
+
+  .intent-overlay .intent-panel__content {
+    background: #0d1d25;
+  }
+
+  .intent-overlay .intent-panel h2,
+  .intent-overlay .intent-option__copy strong {
+    color: #f1f6f5;
+  }
+
+  .intent-overlay .intent-lead,
+  .intent-overlay .intent-option__copy small,
+  .intent-overlay .intent-browse {
+    color: #9fb3b1;
+  }
+
+  .intent-overlay .intent-option {
+    border-color: rgba(220, 239, 235, 0.12);
+    background: #132832;
+  }
+
+  .intent-overlay .intent-option:hover,
+  .intent-overlay .intent-option.is-current {
+    border-color: rgba(143, 208, 196, 0.42);
+    background: #17343a;
+  }
+
+  .intent-overlay .intent-option__icon {
+    background: #18373a;
+    color: #9bdbcf;
+  }
+
+  .intent-overlay .intent-close {
+    background: #1b3038;
+    color: #dce8e6;
+  }
+
+  .intent-overlay .intent-identity {
+    border-left-color: rgba(220, 239, 235, 0.1);
+    background: linear-gradient(180deg, #12272d 0%, #10251f 100%);
+  }
+
+  .intent-overlay .intent-identity__brand,
+  .intent-overlay .intent-identity__contact > a,
+  .intent-overlay .intent-identity__contact > div {
+    border-color: rgba(220, 239, 235, 0.11);
+  }
+
+  .intent-overlay .intent-identity__brand p,
+  .intent-overlay .intent-identity__contact strong,
+  .intent-overlay .intent-identity__credit strong {
+    color: #e7f0ee;
+  }
+
+  .intent-overlay .intent-identity__brand > span,
+  .intent-overlay .intent-identity__contact span,
+  .intent-overlay .intent-identity__credit {
+    color: #91a8a5;
+  }
+
+  @media (max-width: 980px) {
+    .navigation {
+      border-color: var(--theme-line);
+      background: #0e222b;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  @media (max-width: 650px) {
+    .intent-overlay .intent-identity {
+      border-top-color: rgba(220, 239, 235, 0.1);
+    }
+  }
+}
