@@ -34,6 +34,14 @@ body {
   transition: background-color 0.22s ease, color 0.22s ease;
 }
 
+.footer .brand strong {
+  color: #f5faf8;
+}
+
+.footer .brand small {
+  color: #8faeab;
+}
+
 html[data-theme='dark'] .site-header {
   border-bottom-color: var(--theme-line);
   background: var(--theme-header);
@@ -51,6 +59,14 @@ html[data-theme='dark'] .training-card h3,
 html[data-theme='dark'] .guide-item strong,
 html[data-theme='dark'] .bento-card strong {
   color: var(--theme-heading);
+}
+
+html[data-theme='dark'] .footer .brand strong {
+  color: #f5faf8;
+}
+
+html[data-theme='dark'] .footer .brand small {
+  color: #8faeab;
 }
 
 html[data-theme='dark'] .brand small {
