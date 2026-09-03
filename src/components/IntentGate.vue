@@ -2,6 +2,7 @@
 const props = defineProps({
   open: Boolean,
   current: String,
+  whatsappUrl: String,
 })
 
 const emit = defineEmits(['select', 'close'])
@@ -79,8 +80,12 @@ const intents = [
 
           <div class="intent-identity__contact">
             <p>İletişim</p>
+            <a class="intent-whatsapp" :href="whatsappUrl" target="_blank" rel="noreferrer">
+              <span>WhatsApp · Cep</span>
+              <strong>0545 425 31 80</strong>
+            </a>
             <a href="tel:+903328136900">
-              <span>Telefon</span>
+              <span>Sabit telefon</span>
               <strong>0 332 813 69 00</strong>
             </a>
             <a href="mailto:iletisim@yavuzozelguvenlik.com.tr">
@@ -88,8 +93,8 @@ const intents = [
               <strong>iletisim@yavuzozelguvenlik.com.tr</strong>
             </a>
             <div>
-              <span>Konum</span>
-              <strong>Akşehir · Konya</strong>
+              <span>Adres</span>
+              <strong>Yeni Mahalle Cumhuriyet Caddesi<br>Kürşat 6 Sitesi A Blok 49/B<br>Akşehir / Konya</strong>
             </div>
           </div>
 
@@ -434,27 +439,27 @@ const intents = [
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 28px 23px 21px;
+  padding: 24px 23px 19px;
   border-left: 1px solid rgba(13, 38, 53, 0.1);
   background: linear-gradient(180deg, #f1eee5 0%, #e9efe9 100%);
 }
 
 .intent-identity__brand {
-  padding-bottom: 22px;
+  padding-bottom: 18px;
   border-bottom: 1px solid rgba(13, 38, 53, 0.12);
 }
 
 .intent-identity__logo-wrap {
   display: flex;
   align-items: center;
-  min-height: 76px;
-  margin-bottom: 14px;
+  min-height: 68px;
+  margin-bottom: 11px;
 }
 
 .intent-identity__logo-wrap img {
   display: block;
-  width: min(100%, 178px);
-  max-height: 76px;
+  width: min(100%, 166px);
+  max-height: 68px;
   object-fit: contain;
   object-position: left center;
 }
@@ -462,33 +467,33 @@ const intents = [
 .intent-identity__brand p {
   margin: 0;
   color: #102b38;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .intent-identity__brand > span {
   display: block;
-  margin-top: 6px;
+  margin-top: 5px;
   color: #667b7e;
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .intent-identity__contact {
   display: grid;
   gap: 0;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .intent-identity__contact > p {
-  margin: 0 0 6px;
+  margin: 0 0 4px;
   color: #2e716f;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -496,23 +501,27 @@ const intents = [
 .intent-identity__contact > div {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding: 10px 0;
+  gap: 2px;
+  padding: 7px 0;
   border-bottom: 1px solid rgba(13, 38, 53, 0.1);
 }
 
 .intent-identity__contact span {
   color: #768487;
-  font-size: 10px;
+  font-size: 9.5px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
 }
 
 .intent-identity__contact strong {
   overflow-wrap: anywhere;
   color: #17303d;
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: 12.2px;
+  line-height: 1.34;
+}
+
+.intent-whatsapp strong {
+  color: #216c55;
 }
 
 .intent-identity__credit {
@@ -521,7 +530,7 @@ const intents = [
   align-items: center;
   gap: 7px;
   margin-top: auto;
-  padding-top: 18px;
+  padding-top: 14px;
   color: #617377;
   font-size: 10px;
 }
@@ -612,11 +621,11 @@ const intents = [
   }
 
   .intent-identity {
-    padding: 26px 20px 20px;
+    padding: 23px 20px 18px;
   }
 
   .intent-identity__logo-wrap img {
-    max-width: 160px;
+    max-width: 154px;
   }
 }
 
