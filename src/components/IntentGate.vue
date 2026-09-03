@@ -72,7 +72,7 @@ const intents = [
         <aside class="intent-identity">
           <div class="intent-identity__brand">
             <div class="intent-identity__logo-wrap">
-              <img src="https://www.yavuzozelguvenlik.com.tr/img/altlogo.png" alt="Yavuz Özel Güvenlik logosu">
+              <img src="/brand/yavuz-logo.webp" alt="Yavuz Özel Güvenlik logosu" width="128" height="128">
             </div>
             <p>Yavuz Özel Güvenlik</p>
             <span>Eğitim · Hizmet · Bilgi</span>
@@ -452,16 +452,17 @@ const intents = [
 .intent-identity__logo-wrap {
   display: flex;
   align-items: center;
-  min-height: 68px;
+  min-height: 78px;
   margin-bottom: 11px;
 }
 
 .intent-identity__logo-wrap img {
   display: block;
-  width: min(100%, 166px);
-  max-height: 68px;
+  width: 74px;
+  height: 74px;
   object-fit: contain;
   object-position: left center;
+  filter: drop-shadow(0 7px 14px rgba(13, 38, 53, 0.12));
 }
 
 .intent-identity__brand p {
@@ -625,7 +626,8 @@ const intents = [
   }
 
   .intent-identity__logo-wrap img {
-    max-width: 154px;
+    width: 70px;
+    height: 70px;
   }
 }
 
@@ -694,20 +696,20 @@ const intents = [
 
   .intent-identity__brand {
     display: grid;
-    grid-template-columns: 84px 1fr;
+    grid-template-columns: 70px 1fr;
     column-gap: 14px;
     align-items: center;
   }
 
   .intent-identity__logo-wrap {
     grid-row: span 2;
-    min-height: 62px;
+    min-height: 60px;
     margin: 0;
   }
 
   .intent-identity__logo-wrap img {
-    width: 80px;
-    max-height: 58px;
+    width: 60px;
+    height: 60px;
   }
 
   .intent-identity__brand p {
