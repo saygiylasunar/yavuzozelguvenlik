@@ -194,7 +194,7 @@ const navigateToSection = target => {
 
 const selectIntent = intent => {
   userIntent.value = intent
-  localStorage.setItem('yavuz-visitor-intent', intent)
+  sessionStorage.setItem('yavuz-visitor-intent', intent)
   intentOpen.value = false
 
   const target = intentProfiles[intent]?.popupHref
@@ -239,7 +239,8 @@ onMounted(() => {
   applyTheme()
   themeMedia.addEventListener?.('change', onSystemThemeChange)
 
-  const storedIntent = localStorage.getItem('yavuz-visitor-intent')
+  localStorage.removeItem('yavuz-visitor-intent')
+  const storedIntent = sessionStorage.getItem('yavuz-visitor-intent')
   if (storedIntent && intentProfiles[storedIntent]) {
     userIntent.value = storedIntent
   } else {
