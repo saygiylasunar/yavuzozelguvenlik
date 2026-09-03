@@ -32,6 +32,7 @@ const intentProfiles = {
     href: '#iletisim',
     hero: 'Eğitimleri incele',
     heroHref: '#egitimler',
+    popupHref: null,
   },
   basic: {
     label: 'İlk kez ÖGG olacağım',
@@ -39,6 +40,7 @@ const intentProfiles = {
     href: '#egitimler',
     hero: 'Temel eğitime başla',
     heroHref: '#egitimler',
+    popupHref: '#egitimler',
   },
   renewal: {
     label: 'Kimliğimi yenileyeceğim',
@@ -46,6 +48,7 @@ const intentProfiles = {
     href: '#egitimler',
     hero: 'Yenileme eğitimini gör',
     heroHref: '#egitimler',
+    popupHref: '#egitimler',
   },
   exam: {
     label: 'Sınava hazırlanıyorum',
@@ -53,6 +56,7 @@ const intentProfiles = {
     href: '#sinav',
     hero: 'Sınav merkezini aç',
     heroHref: '#sinav',
+    popupHref: '#sinav',
   },
   documents: {
     label: 'Gerekli belgeleri arıyorum',
@@ -60,6 +64,7 @@ const intentProfiles = {
     href: '#rehber',
     hero: 'Başvuru rehberini aç',
     heroHref: '#rehber',
+    popupHref: '#rehber',
   },
   service: {
     label: 'Güvenlik hizmeti almak istiyorum',
@@ -67,6 +72,7 @@ const intentProfiles = {
     href: '#iletisim',
     hero: 'Hizmet alanlarını incele',
     heroHref: '#hizmetler',
+    popupHref: '#hizmetler',
   },
 }
 
@@ -169,10 +175,32 @@ const onScroll = () => {
   headerCompact.value = window.scrollY > 28
 }
 
+const navigateToSection = target => {
+  if (!target) return
+
+  const section = document.querySelector(target)
+  if (!section) return
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const headerOffset = 112
+  const top = section.getBoundingClientRect().top + window.scrollY - headerOffset
+
+  history.replaceState(null, '', target)
+  window.scrollTo({
+    top: Math.max(0, top),
+    behavior: reduceMotion ? 'auto' : 'smooth',
+  })
+}
+
 const selectIntent = intent => {
   userIntent.value = intent
   localStorage.setItem('yavuz-visitor-intent', intent)
   intentOpen.value = false
+
+  const target = intentProfiles[intent]?.popupHref
+  if (target) {
+    window.setTimeout(() => navigateToSection(target), 220)
+  }
 }
 
 const resetIntent = () => {
