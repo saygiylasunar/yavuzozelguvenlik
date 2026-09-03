@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import InnerSite from './pages/InnerSite.vue'
 import { normalizePath, resolvePage } from './content/pages.js'
+import { applyRuntimeSeo } from './content/seo.js'
 import './styles.css'
 import './experience.css'
 import './polish.css'
@@ -10,21 +11,22 @@ import './layout.css'
 import './inner.css'
 
 const currentPath = normalizePath(window.location.pathname)
+applyRuntimeSeo(currentPath)
 
 if (currentPath === '/') {
   createApp(App).mount('#app')
 
   requestAnimationFrame(() => {
     const navRoutes = {
-      Eğitimler: '/egitimler',
-      'Sınav merkezi': '/sinav',
-      'ÖGG rehberi': '/ogg-rehberi',
-      Kurumsal: '/kurumsal',
-      Hizmetler: '/guvenlik-hizmetleri',
+      '#egitimler': '/egitimler',
+      '#sinav': '/sinav',
+      '#rehber': '/ogg-rehberi',
+      '#kurumsal': '/kurumsal',
+      '#hizmetler': '/guvenlik-hizmetleri',
     }
 
     document.querySelectorAll('.navigation > a:not(.nav-cta)').forEach(link => {
-      const route = navRoutes[link.textContent.trim()]
+      const route = navRoutes[link.getAttribute('href')]
       if (route) link.setAttribute('href', route)
     })
 
@@ -43,7 +45,6 @@ if (currentPath === '/') {
       card.classList.add('is-linked')
       card.setAttribute('role', 'link')
       card.setAttribute('tabindex', '0')
-      card.style.cursor = 'pointer'
       const open = () => { window.location.href = route }
       card.addEventListener('click', open)
       card.addEventListener('keydown', event => {
@@ -76,7 +77,7 @@ if (currentPath === '/') {
       const route = guideRoutes[index]
       if (!route) return
       const label = card.querySelector('span')
-      if (label) label.textContent = 'Rehberi aç →'
+      if (label) label.textContent = 'Rehberi Aç →'
       makeLinkedCard(card, route)
     })
   })
