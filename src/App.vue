@@ -110,18 +110,31 @@ const trainings = [
   {
     type: 'Temel eğitim',
     title: 'Silahlı özel güvenlik',
-    text: 'Mesleğe silahlı görev kapsamında hazırlanmak isteyen adaylar için temel eğitim ve silah bilgisi süreci.',
+    duration: '120 ders saati',
+    text: '100 saat teorik ve pratik temel eğitime ek olarak 20 saat silah eğitimiyle yürütülen program.',
   },
   {
     type: 'Temel eğitim',
     title: 'Silahsız özel güvenlik',
-    text: 'Özel güvenlik mesleğine silahsız görev kapsamında başlayacak adaylar için temel eğitim programı.',
+    duration: '100 ders saati',
+    text: 'Silahsız görev kapsamında mesleğe hazırlanacak adaylar için teorik ve pratik temel eğitim programı.',
   },
   {
-    type: 'Yenileme',
-    title: 'ÖGG yenileme eğitimi',
-    text: 'Kimlik kartı yenileme sürecindeki özel güvenlik görevlileri için güncel eğitim programı.',
+    type: 'Yenileme eğitimi',
+    title: 'ÖGG yenileme',
+    duration: '60 / 50 ders saati',
+    text: 'Silahlı görevliler için en az 60, silahsız görevliler için en az 50 ders saatlik yenileme eğitimi.',
   },
+]
+
+const fieldTrainings = [
+  { title: 'Kadro atışları', icon: 'my_location' },
+  { title: 'Özel güvenlik yöneticiliği', icon: 'manage_accounts' },
+  { title: 'Kişi koruma', icon: 'verified_user' },
+  { title: 'Kıymet nakli', icon: 'local_shipping' },
+  { title: 'Alarm izleme', icon: 'notifications_active' },
+  { title: 'Ulaşım güvenliği', icon: 'commute' },
+  { title: 'Geçici toplu etkinlikler ve spor güvenliği', icon: 'stadium' },
 ]
 
 const learningItems = [
@@ -139,7 +152,7 @@ const guideItems = [
 ]
 
 const timeline = [
-  ['2007', 'Akşehir’de özel güvenlik alanında faaliyet başlangıcı'],
+  ['2006', 'Akşehir’de özel güvenlik alanında faaliyet başlangıcı'],
   ['2018', 'Akşehir KOMEK Güvenlik Danışmanlığı Kursu arşiv kaydı'],
   ['Bugün', 'Eğitim, saha hizmeti ve ÖGG bilgi merkezini aynı kurum çatısı altında sürdüren yapı'],
 ]
@@ -289,7 +302,7 @@ onBeforeUnmount(() => {
         <div class="hero-glow hero-glow--two"></div>
         <div class="container hero-grid">
           <div class="hero-copy" data-reveal>
-            <p class="eyebrow eyebrow--light">Akşehir’de 2007’den beri</p>
+            <p class="eyebrow eyebrow--light">Akşehir’de 2006’dan beri</p>
             <h1>GÜVENLİĞİ ÖĞRENİN.<br><em>SAHADA UYGULAYIN.</em></h1>
             <p class="hero-lead">Özel güvenlik eğitimi, saha hizmetleri, sınav hazırlığı ve mesleki bilgi aynı kurum çatısı altında.</p>
             <div class="hero-actions">
@@ -362,7 +375,7 @@ onBeforeUnmount(() => {
           <div class="section-heading" data-reveal>
             <p class="eyebrow">Eğitim merkezi</p>
             <h2>Mesleğe hazırlanırken yalnız değilsiniz.</h2>
-            <p>Temel eğitimden yenilemeye kadar süreci sade, anlaşılır ve sınava hazırlıkla bütünleşik kurguluyoruz.</p>
+            <p>Temel eğitimden yenilemeye, kadro atışlarından alan eğitimlerine kadar mesleki gelişimi aynı merkezde sürdürüyoruz.</p>
           </div>
 
           <div class="training-grid">
@@ -370,9 +383,24 @@ onBeforeUnmount(() => {
               <div class="training-card__number">0{{ index + 1 }}</div>
               <p>{{ training.type }}</p>
               <h3>{{ training.title }}</h3>
+              <strong class="training-card__duration">{{ training.duration }}</strong>
               <span>{{ training.text }}</span>
               <a :href="whatsappEducation" target="_blank" rel="noreferrer">WhatsApp’tan bilgi al <b>→</b></a>
             </article>
+          </div>
+
+          <div class="field-training" data-reveal>
+            <div class="field-training__intro">
+              <p class="eyebrow">Alan eğitimleri</p>
+              <h3>Göreve göre uzmanlaşma.</h3>
+              <p>Temel ve yenileme eğitimlerinin yanında uygulamaya ve görev alanına odaklanan eğitim başlıkları.</p>
+            </div>
+            <div class="field-training__grid">
+              <div v-for="item in fieldTrainings" :key="item.title" class="field-training__item">
+                <span class="material-symbols-rounded" aria-hidden="true">{{ item.icon }}</span>
+                <strong>{{ item.title }}</strong>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -382,9 +410,13 @@ onBeforeUnmount(() => {
           <div class="exam-copy" data-reveal>
             <p class="eyebrow eyebrow--light">Sınav ve öğrenme merkezi</p>
             <h2>Kurs bittikten sonra da yanınızdayız.</h2>
-            <p>Yavuz’un soru ve ders notu arşivini modern bir çalışma düzeni içinde erişilebilir tutuyoruz.</p>
+            <p>Yavuz’un soru ve ders notu arşivini modern bir çalışma düzeni içinde erişilebilir tutuyoruz. Sınava giren adayları resmî sonuç ekranına doğrudan yönlendiriyoruz.</p>
             <div class="exam-actions">
-              <a class="button button--warm" href="#rehber">ÖGG rehberine geç</a>
+              <a class="button button--warm exam-result-button" href="https://egm.gov.tr/ozelguvenlik/sinav-sonuclari" target="_blank" rel="noreferrer">
+                <span class="material-symbols-rounded" aria-hidden="true">fact_check</span>
+                Sınav sonucunu sorgula
+              </a>
+              <a class="text-link" href="#rehber">ÖGG rehberine geç</a>
               <a class="text-link" href="https://egm.gov.tr/ozelguvenlik/2026-sinav-takvimi" target="_blank" rel="noreferrer">Resmî sınav takvimi ↗</a>
             </div>
           </div>
