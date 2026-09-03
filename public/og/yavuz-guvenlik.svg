@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Yavuz Özel Güvenlik</title>
+  <desc id="desc">Akşehir, Konya özel güvenlik eğitimi ve güvenlik hizmetleri</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07151d"/>
+      <stop offset="0.58" stop-color="#0d2635"/>
+      <stop offset="1" stop-color="#24625f"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#efb257"/>
+      <stop offset="1" stop-color="#a8ddd2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g fill="none" stroke="#a8ddd2" stroke-opacity=".15">
+    <path d="M720 70h360v210H860v160H660V210h60z" stroke-width="2"/>
+    <path d="M780 110h240v120H900v120H720" stroke-dasharray="12 12"/>
+    <circle cx="780" cy="110" r="8" fill="#efb257" stroke="none"/>
+    <circle cx="900" cy="350" r="8" fill="#a8ddd2" stroke="none"/>
+    <path d="M1040 170l80 42-80 42z" fill="#a8ddd2" fill-opacity=".08" stroke="none"/>
+  </g>
+  <rect x="72" y="82" width="132" height="6" rx="3" fill="url(#warm)"/>
+  <text x="72" y="188" fill="#f3f7f6" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="700" letter-spacing="-1">YAVUZ ÖZEL GÜVENLİK</text>
+  <text x="72" y="250" fill="#a8ddd2" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="4">AKŞEHİR · KONYA</text>
+  <text x="72" y="410" fill="#dce8e6" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="500">Eğitim · Sınav · ÖGG Rehberi · Saha Hizmetleri</text>
+  <text x="72" y="500" fill="#efb257" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">2006’dan beri</text>
+</svg>
