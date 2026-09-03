@@ -39,19 +39,11 @@ if (currentPath === '/') {
       if (quickRoutes[index]) link.setAttribute('href', quickRoutes[index])
     })
 
-    const learningRoutes = [
-      '/sinav/cikmis-sorular',
-      '/sinav/ders-notlari',
-      '/sinav/online-deneme',
-      '/ogg-rehberi',
-    ]
-
-    document.querySelectorAll('.learning-stack article').forEach((card, index) => {
-      const route = learningRoutes[index]
-      if (!route) return
+    const makeLinkedCard = (card, route) => {
       card.classList.add('is-linked')
       card.setAttribute('role', 'link')
       card.setAttribute('tabindex', '0')
+      card.style.cursor = 'pointer'
       const open = () => { window.location.href = route }
       card.addEventListener('click', open)
       card.addEventListener('keydown', event => {
@@ -60,6 +52,17 @@ if (currentPath === '/') {
           open()
         }
       })
+    }
+
+    const learningRoutes = [
+      '/sinav/cikmis-sorular',
+      '/sinav/ders-notlari',
+      '/sinav/online-deneme',
+      '/ogg-rehberi',
+    ]
+
+    document.querySelectorAll('.learning-stack article').forEach((card, index) => {
+      if (learningRoutes[index]) makeLinkedCard(card, learningRoutes[index])
     })
 
     const guideRoutes = [
@@ -72,19 +75,9 @@ if (currentPath === '/') {
     document.querySelectorAll('.guide-item').forEach((card, index) => {
       const route = guideRoutes[index]
       if (!route) return
-      card.classList.add('is-linked')
-      card.setAttribute('role', 'link')
-      card.setAttribute('tabindex', '0')
       const label = card.querySelector('span')
       if (label) label.textContent = 'Rehberi aç →'
-      const open = () => { window.location.href = route }
-      card.addEventListener('click', open)
-      card.addEventListener('keydown', event => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault()
-          open()
-        }
-      })
+      makeLinkedCard(card, route)
     })
   })
 } else {
